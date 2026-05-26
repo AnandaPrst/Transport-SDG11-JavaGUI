@@ -157,7 +157,7 @@ public class LoginForm extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Login berhasil!");
 
         if (user instanceof Penumpang penumpang) {
-            DashboardForm d = new DashboardForm(penumpang);
+            DashboardFormNew d = new DashboardFormNew(penumpang);
             d.setVisible(true);
         } else if (user instanceof Admin) {
             JOptionPane.showMessageDialog(this, "Admin login berhasil (Admin panel bisa dibuat).");
