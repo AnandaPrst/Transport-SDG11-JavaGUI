@@ -46,16 +46,12 @@ public class DashboardFormNew extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelSidebar = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanelMenuSidebar = new javax.swing.JPanel();
-        jLabelProfile = new javax.swing.JLabel();
-        jLabelHitungTarif = new javax.swing.JLabel();
-        jLabelLogout = new javax.swing.JLabel();
         jPanelContent = new javax.swing.JPanel();
         jPanelHeaderDashboard = new javax.swing.JPanel();
         jLabelHeading = new javax.swing.JLabel();
         jLabelUsername = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
         jPanelCardFrame = new javax.swing.JPanel();
         roundedPanel2 = new gui.RoundedPanel();
         roundedPanel5 = new gui.RoundedPanel();
@@ -72,70 +68,29 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jButtonHitungTarif = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 400));
+        setPreferredSize(new java.awt.Dimension(700, 400));
 
-        jPanelSidebar.setBackground(java.awt.Color.red);
-        jPanelSidebar.setPreferredSize(new java.awt.Dimension(200, 650));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("SmartFare");
-
-        jPanelMenuSidebar.setPreferredSize(new java.awt.Dimension(114, 250));
-        jPanelMenuSidebar.setLayout(new java.awt.GridLayout(3, 1));
-
-        jLabelProfile.setText("Profile");
-        jPanelMenuSidebar.add(jLabelProfile);
-
-        jLabelHitungTarif.setText("Hitung tarif");
-        jLabelHitungTarif.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelHitungTarifMouseClicked(evt);
-            }
-        });
-        jPanelMenuSidebar.add(jLabelHitungTarif);
-
-        jLabelLogout.setText("Logout");
-        jLabelLogout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelLogoutMouseClicked(evt);
-            }
-        });
-        jPanelMenuSidebar.add(jLabelLogout);
-
-        javax.swing.GroupLayout jPanelSidebarLayout = new javax.swing.GroupLayout(jPanelSidebar);
-        jPanelSidebar.setLayout(jPanelSidebarLayout);
-        jPanelSidebarLayout.setHorizontalGroup(
-            jPanelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSidebarLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelMenuSidebar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-        jPanelSidebarLayout.setVerticalGroup(
-            jPanelSidebarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSidebarLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jPanelMenuSidebar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
-        );
-
-        getContentPane().add(jPanelSidebar, java.awt.BorderLayout.WEST);
-
-        jPanelContent.setBackground(java.awt.Color.blue);
+        jPanelContent.setBackground(new java.awt.Color(240, 244, 241));
         jPanelContent.setPreferredSize(new java.awt.Dimension(700, 293));
 
-        jPanelHeaderDashboard.setBackground(java.awt.Color.blue);
+        jPanelHeaderDashboard.setBackground(java.awt.Color.white);
         jPanelHeaderDashboard.setPreferredSize(new java.awt.Dimension(700, 80));
 
         jLabelHeading.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabelHeading.setText("Dashboard overview");
+        jLabelHeading.setForeground(new java.awt.Color(27, 77, 62));
+        jLabelHeading.setText("SmartFare Dashboard");
 
         jLabelUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabelUsername.setForeground(new java.awt.Color(127, 140, 141));
         jLabelUsername.setText("Selamat datang User");
+
+        jButton1.setBackground(new java.awt.Color(231, 76, 60));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Logout");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(189, 195, 199));
 
         javax.swing.GroupLayout jPanelHeaderDashboardLayout = new javax.swing.GroupLayout(jPanelHeaderDashboard);
         jPanelHeaderDashboard.setLayout(jPanelHeaderDashboardLayout);
@@ -146,24 +101,38 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelHeading)
                     .addComponent(jLabelUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(36, 36, 36))
+            .addComponent(jSeparator1)
         );
         jPanelHeaderDashboardLayout.setVerticalGroup(
             jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelHeading)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelUsername)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelHeading)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelUsername))
+                    .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanelCardFrame.setBackground(java.awt.Color.green);
+        jPanelCardFrame.setBackground(new java.awt.Color(244, 246, 249));
         jPanelCardFrame.setPreferredSize(new java.awt.Dimension(700, 200));
         jPanelCardFrame.setLayout(new java.awt.GridLayout(1, 3, 25, 0));
 
-        roundedPanel5.setBackground(java.awt.Color.red);
+        roundedPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        roundedPanel5.setBackground(new java.awt.Color(233, 215, 165));
+        roundedPanel5.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Green Points");
 
         jLabelGreenPoints.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -174,20 +143,20 @@ public class DashboardFormNew extends javax.swing.JFrame {
         roundedPanel5Layout.setHorizontalGroup(
             roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel5Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(38, 38, 38)
+                .addGroup(roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelGreenPoints)
                     .addComponent(jLabel5))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         roundedPanel5Layout.setVerticalGroup(
             roundedPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel5Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel5)
-                .addGap(49, 49, 49)
+                .addGap(52, 52, 52)
                 .addComponent(jLabelGreenPoints)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
@@ -209,8 +178,11 @@ public class DashboardFormNew extends javax.swing.JFrame {
 
         jPanelCardFrame.add(roundedPanel2);
 
-        roundedPanel6.setBackground(java.awt.Color.red);
+        roundedPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        roundedPanel6.setBackground(new java.awt.Color(163, 228, 215));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Carbon Saving");
 
         jLabelCarbonSaving.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -223,19 +195,19 @@ public class DashboardFormNew extends javax.swing.JFrame {
             .addGroup(roundedPanel6Layout.createSequentialGroup()
                 .addGroup(roundedPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundedPanel6Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel6))
-                    .addGroup(roundedPanel6Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jLabelCarbonSaving)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(jLabelCarbonSaving))
+                    .addGroup(roundedPanel6Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel6)))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         roundedPanel6Layout.setVerticalGroup(
             roundedPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel6Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel6)
-                .addGap(57, 57, 57)
+                .addGap(55, 55, 55)
                 .addComponent(jLabelCarbonSaving)
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -259,8 +231,11 @@ public class DashboardFormNew extends javax.swing.JFrame {
 
         jPanelCardFrame.add(roundedPanel3);
 
-        roundedPanel7.setBackground(java.awt.Color.red);
+        roundedPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        roundedPanel7.setBackground(new java.awt.Color(174, 214, 241));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Total Pembayaran");
 
         jLabelTotalPembayaran.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -271,23 +246,23 @@ public class DashboardFormNew extends javax.swing.JFrame {
         roundedPanel7Layout.setHorizontalGroup(
             roundedPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel7Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(roundedPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabelTotalPembayaran)
-                        .addGap(26, 26, 26))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(42, 42, 42))))
+                        .addGap(36, 36, 36))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabelTotalPembayaran)
+                        .addGap(26, 26, 26))))
         );
         roundedPanel7Layout.setVerticalGroup(
             roundedPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundedPanel7Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGap(51, 51, 51)
                 .addComponent(jLabelTotalPembayaran)
-                .addGap(65, 65, 65))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout roundedPanel4Layout = new javax.swing.GroupLayout(roundedPanel4);
@@ -309,8 +284,11 @@ public class DashboardFormNew extends javax.swing.JFrame {
 
         jPanelCardFrame.add(roundedPanel4);
 
+        jButtonHitungTarif.setBackground(new java.awt.Color(30, 132, 73));
         jButtonHitungTarif.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButtonHitungTarif.setForeground(new java.awt.Color(255, 255, 255));
         jButtonHitungTarif.setText("Hitung Tarif");
+        jButtonHitungTarif.setPreferredSize(new java.awt.Dimension(200, 45));
         jButtonHitungTarif.addActionListener(this::jButtonHitungTarifActionPerformed);
 
         javax.swing.GroupLayout jPanelContentLayout = new javax.swing.GroupLayout(jPanelContent);
@@ -318,26 +296,25 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jPanelContentLayout.setHorizontalGroup(
             jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelContentLayout.createSequentialGroup()
-                .addComponent(jPanelHeaderDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelHeaderDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelContentLayout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(jButtonHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelContentLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelContentLayout.createSequentialGroup()
-                        .addComponent(jButtonHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(194, 194, 194))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelContentLayout.createSequentialGroup()
-                        .addComponent(jPanelCardFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                .addComponent(jPanelCardFrame, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelContentLayout.setVerticalGroup(
             jPanelContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelContentLayout.createSequentialGroup()
                 .addComponent(jPanelHeaderDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(18, 18, 18)
                 .addComponent(jPanelCardFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonHitungTarif)
+                .addComponent(jButtonHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -352,16 +329,10 @@ public class DashboardFormNew extends javax.swing.JFrame {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonHitungTarifActionPerformed
 
-    private void jLabelLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelLogoutMouseClicked
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new LoginForm().setVisible(true);
         this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabelLogoutMouseClicked
-
-    private void jLabelHitungTarifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelHitungTarifMouseClicked
-        HitungTarifForm h = new HitungTarifForm(penumpang);
-        h.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabelHitungTarifMouseClicked
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -393,24 +364,20 @@ public class DashboardFormNew extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonHitungTarif;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelCarbonSaving;
     private javax.swing.JLabel jLabelGreenPoints;
     private javax.swing.JLabel jLabelHeading;
-    private javax.swing.JLabel jLabelHitungTarif;
-    private javax.swing.JLabel jLabelLogout;
-    private javax.swing.JLabel jLabelProfile;
     private javax.swing.JLabel jLabelTotalPembayaran;
     private javax.swing.JLabel jLabelUsername;
     private javax.swing.JPanel jPanelCardFrame;
     private javax.swing.JPanel jPanelContent;
     private javax.swing.JPanel jPanelHeaderDashboard;
-    private javax.swing.JPanel jPanelMenuSidebar;
-    private javax.swing.JPanel jPanelSidebar;
+    private javax.swing.JSeparator jSeparator1;
     private gui.RoundedPanel roundedPanel2;
     private gui.RoundedPanel roundedPanel3;
     private gui.RoundedPanel roundedPanel4;
