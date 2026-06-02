@@ -34,7 +34,7 @@ public class ForgotPasswordForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnUpdate.setBackground(new java.awt.Color(0, 153, 102));
+        btnUpdate.setBackground(new java.awt.Color(0, 102, 51));
         btnUpdate.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(255, 255, 255));
         btnUpdate.setText("Update");

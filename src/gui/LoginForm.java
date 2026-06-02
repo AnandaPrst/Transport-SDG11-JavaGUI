@@ -39,6 +39,7 @@ public class LoginForm extends javax.swing.JFrame {
         lblForgotPassword = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblSignup = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -59,7 +60,7 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setBackground(new java.awt.Color(0, 153, 102));
+        btnLogin.setBackground(new java.awt.Color(0, 102, 51));
         btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
@@ -90,6 +91,8 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setText("jCheckBox1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,13 +111,16 @@ public class LoginForm extends javax.swing.JFrame {
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblForgotPassword)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblForgotPassword)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                                .addComponent(jCheckBox1))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblSignup)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,16 +133,21 @@ public class LoginForm extends javax.swing.JFrame {
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblForgotPassword)
-                .addGap(18, 18, 18)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSignup)
-                    .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblForgotPassword)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSignup)
+                            .addComponent(jLabel5)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jCheckBox1)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -144,26 +155,46 @@ public class LoginForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
+      String username = txtUsername.getText();
+    String password = new String(txtPassword.getPassword());
 
-        User user = UserManagerDB.login(username, password);
+    if (username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Username dan Password wajib diisi!");
+        return;
+    }
 
-        if (user == null) {
-            JOptionPane.showMessageDialog(this, "Login gagal!");
-            return;
+    User user = UserManagerDB.login(username, password);
+
+    if (user == null) {
+        JOptionPane.showMessageDialog(this, "Login gagal! Username atau password salah.");
+        return;
+    }
+
+    JOptionPane.showMessageDialog(this, "Login berhasil!");
+
+    // jika penumpang
+    if (user instanceof Penumpang) {
+        Penumpang penumpang = (Penumpang) user;
+        DashboardForm d = new DashboardForm(penumpang);
+        d.setVisible(true);
+        this.dispose();
+        return;
+    }
+
+    // jika admin
+    if (user instanceof Admin admin) {
+
+        try {
+                AdminDashboardForm a = new AdminDashboardForm(admin);
+            a.setVisible(true);
+            this.dispose();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Admin dashboard error: " + e.getMessage());
         }
+        return;
+    }
 
-        JOptionPane.showMessageDialog(this, "Login berhasil!");
-
-        if (user instanceof Penumpang penumpang) {
-            DashboardForm d = new DashboardForm(penumpang);
-            d.setVisible(true);
-        } else if (user instanceof Admin) {
-            JOptionPane.showMessageDialog(this, "Admin login berhasil (Admin panel bisa dibuat).");
-        }
-
-        this.dispose();      
+    JOptionPane.showMessageDialog(this, "Role user tidak dikenali!");
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
@@ -215,6 +246,7 @@ public class LoginForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
