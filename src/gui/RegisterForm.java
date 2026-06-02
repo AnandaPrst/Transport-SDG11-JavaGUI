@@ -61,7 +61,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
         jLabel3.setText("Password");
 
-        btnRegister.setBackground(new java.awt.Color(0, 153, 102));
+        btnRegister.setBackground(new java.awt.Color(0, 102, 51));
         btnRegister.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnRegister.setForeground(new java.awt.Color(255, 255, 255));
         btnRegister.setText("Signup");
