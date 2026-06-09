@@ -201,7 +201,30 @@ public class LoginForm extends javax.swing.JFrame {
         return;
     }
 
-    JOptionPane.showMessageDialog(this, "Role user tidak dikenali!");
+        JOptionPane.showMessageDialog(this, "Login berhasil!");
+
+// jika penumpang
+        if (user instanceof Penumpang penumpang) {
+            DashboardFormNew d = new DashboardFormNew(penumpang);
+            d.setVisible(true);
+            this.dispose();
+            return;
+        }
+
+// jika admin
+        if (user instanceof Admin admin) {
+            try {
+                AdminDashboardForm a = new AdminDashboardForm(admin);
+                a.setVisible(true);
+                this.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this,
+                        "Admin dashboard error: " + e.getMessage());
+            }
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, "Role user tidak dikenali!");
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
