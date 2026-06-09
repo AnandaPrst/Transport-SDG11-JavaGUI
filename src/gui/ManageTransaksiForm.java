@@ -4,18 +4,62 @@
  */
 package gui;
 
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
+import service.TransaksiManagerDB;
+import model.Admin;
+
+
 /**
  *
  * @author ASUS
  */
-public class ManageTransaksiForm extends javax.swing.JFrame {
 
+
+public class ManageTransaksiForm extends javax.swing.JFrame {
+    private Admin admin;
     /**
      * Creates new form ManageTransaksiForm
      */
-    public ManageTransaksiForm() {
-        initComponents();
+   public ManageTransaksiForm(Admin admin) {
+    initComponents();
+
+    this.admin = admin;
+
+    setLocationRelativeTo(null);
+
+    loadTransaksi();
+}
+    
+    private void loadTransaksi() {
+
+    DefaultTableModel model =
+        (DefaultTableModel) tblTransaksi.getModel();
+
+    model.setRowCount(0);
+
+    try {
+
+        ResultSet rs =
+    TransaksiManagerDB.getAllTransaksiAdmin();
+
+        while(rs.next()) {
+
+            model.addRow(new Object[]{
+                rs.getInt("id_transaksi"),
+                rs.getDate("tanggal"),
+                rs.getString("username"),
+                rs.getString("kendaraan"),
+                rs.getString("kategori"),
+                rs.getDouble("tarif"),
+                rs.getDouble("emisi_hemat")
+            });
+        }
+
+    } catch(Exception e) {
+        e.printStackTrace();
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,6 +78,12 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
         lblDashboard = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lblTransaksi = new javax.swing.JLabel();
+        btnSearch = new javax.swing.JButton();
+        txtCariUser = new javax.swing.JTextField();
+        txtTanggal = new javax.swing.JTextField();
+        btnReset = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTransaksi = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,10 +190,43 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
                 .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout)
                 .addContainerGap())
         );
+
+        btnSearch.setText("Cari");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        txtCariUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCariUserActionPerformed(evt);
+            }
+        });
+
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
+        tblTransaksi.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Tanggal", "Username", "Kendaraan", "Kategori", "Tarif", "Emisi"
+            }
+        ));
+        jScrollPane1.setViewportView(tblTransaksi);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -151,30 +234,95 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 470, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCariUser, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnReset)
+                        .addGap(0, 132, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearch)
+                    .addComponent(txtCariUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReset))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserMouseClicked
-        new ManageUserForm().setVisible(true);
-        dispose();
+        new ManageUserForm(admin).setVisible(true);
+    dispose();
     }//GEN-LAST:event_lblUserMouseClicked
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
-        new AdminDashboardForm().setVisible(true);
-        dispose();
+        new AdminDashboardForm(admin).setVisible(true);
+dispose();
     }//GEN-LAST:event_lblDashboardMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
                 new LoginForm().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+     DefaultTableModel model =
+        (DefaultTableModel) tblTransaksi.getModel();
+
+    model.setRowCount(0);
+
+    try {
+
+        ResultSet rs =
+            TransaksiManagerDB.searchTransaksi(
+                txtCariUser.getText(),
+                txtTanggal.getText()
+            );
+
+        while(rs.next()) {
+
+            model.addRow(new Object[]{
+                rs.getInt("id_transaksi"),
+                rs.getDate("tanggal"),
+                rs.getString("username"),
+                rs.getString("kendaraan"),
+                rs.getString("kategori"),
+                rs.getDouble("tarif"),
+                rs.getDouble("emisi_hemat")
+            });
+        }
+
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+    txtCariUser.setText("");
+    txtTanggal.setText("");
+
+    loadTransaksi();
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void txtCariUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCariUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,12 +331,18 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblTransaksi;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JTable tblTransaksi;
+    private javax.swing.JTextField txtCariUser;
+    private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables
 }
