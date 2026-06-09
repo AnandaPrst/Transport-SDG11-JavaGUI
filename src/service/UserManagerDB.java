@@ -12,9 +12,13 @@ package service;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import model.Admin;
 import model.Penumpang;
 import model.User;
+
+
+   
 
 public class UserManagerDB {
 
@@ -119,4 +123,199 @@ public class UserManagerDB {
             System.out.println("Update points gagal: " + e.getMessage());
         }
     }
+    
+    public static int getTotalUser() {
+
+    int total = 0;
+
+    try {
+        Connection conn = DBConnection.getConnection();
+
+        String sql = "SELECT COUNT(*) FROM users";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            total = rs.getInt(1);
+        }
+
+    } catch (SQLException e) {
+    }
+
+    return total;
+}
+    
+    public static boolean deleteUser(int idUser) {
+
+    try {
+        Connection conn = DBConnection.getConnection();
+
+        String sql = "DELETE FROM users WHERE id_user=?";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idUser);
+
+        return ps.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+    }
+
+    return false;
+}
+    
+    public static ResultSet searchUser(String keyword) {
+
+    try {
+        Connection conn = DBConnection.getConnection();
+
+        String sql =
+        "SELECT * FROM users " +
+        "WHERE username LIKE ? " +
+        "OR email LIKE ?";
+
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setString(1, "%" + keyword + "%");
+        ps.setString(2, "%" + keyword + "%");
+
+        return ps.executeQuery();
+
+    } catch (SQLException e) {
+    }
+
+    return null;
+}
+    
+    public static ResultSet getAllUsers() {
+
+    try {
+
+        Connection conn = DBConnection.getConnection();
+
+        String sql =
+        "SELECT id_user,email,username,role,green_points " +
+        "FROM users";
+
+        PreparedStatement ps =
+        conn.prepareStatement(sql);
+
+        return ps.executeQuery();
+
+    } catch (SQLException e) {
+    }
+
+    return null;
+}
+    
+    public static boolean updateUser(
+        int idUser,
+        String email,
+        String username,
+        String role) {
+
+    try {
+
+        Connection conn = DBConnection.getConnection();
+
+        String sql =
+        "UPDATE users " +
+        "SET email=?, username=?, role=? " +
+        "WHERE id_user=?";
+
+        PreparedStatement ps =
+        conn.prepareStatement(sql);
+
+        ps.setString(1, email);
+        ps.setString(2, username);
+        ps.setString(3, role);
+        ps.setInt(4, idUser);
+
+        return ps.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+    }
+
+    return false;
+}
+    
+    public static int getTotalPenumpang() {
+
+    int total = 0;
+
+    try {
+
+        Connection conn =
+        DBConnection.getConnection();
+
+        String sql =
+        "SELECT COUNT(*) FROM users " +
+        "WHERE role='penumpang'";
+
+        PreparedStatement ps =
+        conn.prepareStatement(sql);
+
+        ResultSet rs =
+        ps.executeQuery();
+
+        if(rs.next()){
+            total = rs.getInt(1);
+        }
+
+    } catch(SQLException e){
+    }
+
+    return total;
+}
+    
+    public static ResultSet getTopUser() {
+
+    try {
+
+        Connection conn = DBConnection.getConnection();
+
+        String sql =
+"SELECT username, green_points "
++ "FROM users "
++ "ORDER BY green_points DESC "
++ "LIMIT 5";
+
+        PreparedStatement ps =
+        conn.prepareStatement(sql);
+
+        return ps.executeQuery();
+
+    } catch(SQLException e) {
+    }
+
+    return null;
+}
+    
+    public static boolean updateUser(
+        int idUser,
+        String email,
+        String username) {
+
+    try {
+
+        Connection conn =
+        DBConnection.getConnection();
+
+        String sql =
+"UPDATE users SET email=?, username=? WHERE id_user=?";
+
+        PreparedStatement ps =
+        conn.prepareStatement(sql);
+
+        ps.setString(1, email);
+        ps.setString(2, username);
+        ps.setInt(3, idUser);
+
+        return ps.executeUpdate() > 0;
+
+    } catch(SQLException e) {
+    }
+
+    return false;
+}
 }

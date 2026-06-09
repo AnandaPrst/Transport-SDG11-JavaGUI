@@ -4,6 +4,14 @@
  */
 package gui;
 
+import javax.swing.table.DefaultTableModel;
+import service.UserManagerDB;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import model.Admin;
+
+
 
 /**
  *
@@ -14,9 +22,45 @@ public class ManageUserForm extends javax.swing.JFrame {
     /**
      * Creates new form ManageUserForm
      */
-    public ManageUserForm() {
-        initComponents();
+    private Admin admin;
+
+public ManageUserForm(Admin admin) {
+    initComponents();
+    this.admin = admin;
+    setLocationRelativeTo(null);
+
+    loadUser();
+}
+    
+    private void loadUser() {
+
+    DefaultTableModel model =
+    (DefaultTableModel) tblUser.getModel();
+
+    model.setRowCount(0);
+
+    try {
+
+        ResultSet rs =
+        UserManagerDB.getAllUsers();
+
+        while(rs.next()) {
+
+            model.addRow(new Object[]{
+                rs.getInt("id_user"),
+                rs.getString("email"),
+                rs.getString("username"),
+                rs.getString("role"),
+                rs.getInt("green_points")
+            });
+
+        }
+
+    } catch(SQLException e) {
     }
+}
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +79,14 @@ public class ManageUserForm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblDashboard = new javax.swing.JLabel();
+        btnTambahUser = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblUser = new javax.swing.JTable();
+        btnSearch = new javax.swing.JButton();
+        txtCariUser = new javax.swing.JTextField();
+        btnEditUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,10 +194,65 @@ public class ManageUserForm extends javax.swing.JFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout)
                 .addContainerGap())
         );
+
+        btnTambahUser.setText("Tambah User");
+        btnTambahUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahUserActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Hapus");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        tblUser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Email", "Username", "Role", "Green Point"
+            }
+        ));
+        jScrollPane1.setViewportView(tblUser);
+
+        btnSearch.setText("Cari");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        txtCariUser.setText("Cari username / nama");
+        txtCariUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCariUserActionPerformed(evt);
+            }
+        });
+
+        btnEditUser.setText("Edit");
+        btnEditUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditUserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,24 +260,53 @@ public class ManageUserForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 470, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtCariUser, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnTambahUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEditUser)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDelete))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRefresh))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSearch)
+                        .addComponent(txtCariUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTambahUser)
+                        .addComponent(btnDelete)
+                        .addComponent(btnEditUser)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRefresh)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblTransaksiMouseClicked
-        new ManageTransaksiForm().setVisible(true);
-        dispose();
+      new ManageTransaksiForm(admin).setVisible(true);
+    dispose();
     }//GEN-LAST:event_lblTransaksiMouseClicked
 
     private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
-        new AdminDashboardForm().setVisible(true);
-        dispose();
+        new AdminDashboardForm(admin).setVisible(true);
+dispose();
     }//GEN-LAST:event_lblDashboardMouseClicked
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -178,16 +314,176 @@ public class ManageUserForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+    loadUser();
+
+    txtCariUser.setText("");
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+    DefaultTableModel model =
+    (DefaultTableModel) tblUser.getModel();
+
+    model.setRowCount(0);
+
+    try {
+
+        ResultSet rs =
+        UserManagerDB.searchUser(
+        txtCariUser.getText());
+
+        while(rs.next()) {
+
+            model.addRow(new Object[]{
+                rs.getInt("id_user"),
+                rs.getString("email"),
+                rs.getString("username"),
+                rs.getString("role"),
+                rs.getInt("green_points")
+            });
+
+        }
+
+    } catch(SQLException e) {
+    }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+     int row = tblUser.getSelectedRow();
+
+    if(row == -1){
+        JOptionPane.showMessageDialog(
+        this,
+        "Pilih user terlebih dahulu");
+        return;
+    }
+
+    int idUser =
+    Integer.parseInt(
+    tblUser.getValueAt(row,0).toString());
+
+    if(UserManagerDB.deleteUser(idUser)){
+
+        JOptionPane.showMessageDialog(
+        this,
+        "User berhasil dihapus");
+
+        loadUser();
+    }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnTambahUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahUserActionPerformed
+    String email =
+    JOptionPane.showInputDialog(
+    "Masukkan Email");
+
+    String username =
+    JOptionPane.showInputDialog(
+    "Masukkan Username");
+
+    String password =
+    JOptionPane.showInputDialog(
+    "Masukkan Password");
+
+    if(UserManagerDB.registerPenumpang(
+            email,
+            username,
+            password)) {
+
+        JOptionPane.showMessageDialog(
+        this,
+        "User berhasil ditambahkan");
+
+        loadUser();
+
+    } else {
+
+        JOptionPane.showMessageDialog(
+        this,
+        "User gagal ditambahkan");
+    }
+    }//GEN-LAST:event_btnTambahUserActionPerformed
+
+    private void btnEditUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditUserActionPerformed
+
+    int row = tblUser.getSelectedRow();
+
+    if(row == -1){
+
+        JOptionPane.showMessageDialog(
+            this,
+            "Pilih user terlebih dahulu");
+
+        return;
+    }
+
+    int idUser = Integer.parseInt(
+        tblUser.getValueAt(row, 0).toString());
+
+    String emailLama =
+        tblUser.getValueAt(row, 1).toString();
+
+    String usernameLama =
+        tblUser.getValueAt(row, 2).toString();
+
+    String emailBaru =
+        JOptionPane.showInputDialog(
+            this,
+            "Edit Email",
+            emailLama);
+
+    String usernameBaru =
+        JOptionPane.showInputDialog(
+            this,
+            "Edit Username",
+            usernameLama);
+
+    if(emailBaru == null ||
+       usernameBaru == null){
+        return;
+    }
+
+    if(UserManagerDB.updateUser(
+            idUser,
+            emailBaru,
+            usernameBaru)) {
+
+        JOptionPane.showMessageDialog(
+            this,
+            "User berhasil diupdate");
+
+        loadUser();
+
+    } else {
+
+        JOptionPane.showMessageDialog(
+            this,
+            "User gagal diupdate");
+    }
+    }//GEN-LAST:event_btnEditUserActionPerformed
+
+    private void txtCariUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCariUserActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnEditUser;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnTambahUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDashboard;
     private javax.swing.JLabel lblTransaksi;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JTable tblUser;
+    private javax.swing.JTextField txtCariUser;
     // End of variables declaration//GEN-END:variables
 }
