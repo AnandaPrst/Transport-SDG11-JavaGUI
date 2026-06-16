@@ -86,6 +86,10 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         btnHitung = new javax.swing.JButton();
         cmbKategori = new javax.swing.JComboBox<>();
         txtHalte = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         roundedPanelLiveCard = new gui.RoundedPanel();
         jLabelLiveCard = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -118,7 +122,6 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
 
         cmbKendaraan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        txtJarak.setText("jTextField1");
         txtJarak.addActionListener(this::txtJarakActionPerformed);
 
         btnHitung.setText("Hitung Tarif");
@@ -126,8 +129,15 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
 
         cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        txtHalte.setText("jTextField1");
         txtHalte.addActionListener(this::txtHalteActionPerformed);
+
+        jLabel1.setText("Jenis Kendaraan");
+
+        jLabel7.setText("Kategori Pengguna");
+
+        jLabel8.setText("Jarak (KM)");
+
+        jLabel9.setText("Jumlah Halte");
 
         javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
         roundedPanel2.setLayout(roundedPanel2Layout);
@@ -140,19 +150,26 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(roundedPanel2Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roundedPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(roundedPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addGroup(roundedPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         roundedPanel2Layout.setVerticalGroup(
@@ -160,15 +177,23 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
             .addGroup(roundedPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel1)
+                .addGap(1, 1, 1)
                 .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addGap(0, 0, 0)
                 .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addGap(0, 0, 0)
                 .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addGap(0, 0, 0)
                 .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -197,19 +222,19 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
 
         lblTarif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTarif.setForeground(new java.awt.Color(255, 255, 255));
-        lblTarif.setText("Rp");
+        lblTarif.setText("-");
 
         lblEta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblEta.setForeground(new java.awt.Color(255, 255, 255));
-        lblEta.setText("menit");
+        lblEta.setText("-");
 
         lblEmisi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblEmisi.setForeground(new java.awt.Color(255, 255, 255));
-        lblEmisi.setText("kg CO2");
+        lblEmisi.setText("-");
 
         lblPoints.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblPoints.setForeground(new java.awt.Color(255, 255, 255));
-        lblPoints.setText("Points");
+        lblPoints.setText("-");
 
         javax.swing.GroupLayout roundedPanelLiveCardLayout = new javax.swing.GroupLayout(roundedPanelLiveCard);
         roundedPanelLiveCard.setLayout(roundedPanelLiveCardLayout);
@@ -419,11 +444,15 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     private javax.swing.JButton btnHitung;
     private javax.swing.JComboBox<String> cmbKategori;
     private javax.swing.JComboBox<String> cmbKendaraan;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelHeading;
     private javax.swing.JLabel jLabelLiveCard;
     private javax.swing.JPanel jPanel1;
