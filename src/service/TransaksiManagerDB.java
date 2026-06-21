@@ -205,8 +205,16 @@ public class TransaksiManagerDB {
         DBConnection.getConnection();
 
         String sql =
-        "SELECT * FROM transaksi " +
-        "WHERE DATE(tanggal)=?";
+        "SELECT t.id_transaksi, " +
+        "u.username, " +
+        "t.tanggal, " +
+        "t.kendaraan, " +
+        "t.kategori, " +
+        "t.tarif, " +
+        "t.emisi_hemat " +
+        "FROM transaksi t " +
+        "JOIN users u ON t.id_user = u.id_user " +
+        "WHERE DATE(t.tanggal)=STR_TO_DATE(?,'%d-%m-%Y')";
 
         PreparedStatement ps =
         conn.prepareStatement(sql);
@@ -215,7 +223,8 @@ public class TransaksiManagerDB {
 
         return ps.executeQuery();
 
-    } catch (SQLException e) {
+    } catch(SQLException e) {
+        e.printStackTrace();
     }
 
     return null;

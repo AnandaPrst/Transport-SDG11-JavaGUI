@@ -4,10 +4,15 @@
  */
 package gui;
 
+import java.awt.HeadlessException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import service.TransaksiManagerDB;
 import model.Admin;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -47,7 +52,8 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
 
             model.addRow(new Object[]{
                 rs.getInt("id_transaksi"),
-                rs.getDate("tanggal"),
+                new SimpleDateFormat("dd-MM-yyyy")
+        .format(rs.getDate("tanggal")),
                 rs.getString("username"),
                 rs.getString("kendaraan"),
                 rs.getString("kategori"),
@@ -282,35 +288,67 @@ dispose();
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-     DefaultTableModel model =
+        String username = txtCariUser.getText().trim();
+String tanggal = txtTanggal.getText().trim();
+
+if(username.isEmpty() && tanggal.isEmpty()){
+    JOptionPane.showMessageDialog(
+        this,
+        "Masukkan username atau tanggal terlebih dahulu!"
+    );
+    return;
+}
+        
+        DefaultTableModel model =
         (DefaultTableModel) tblTransaksi.getModel();
 
     model.setRowCount(0);
 
-    try {
+try {
 
-        ResultSet rs =
-            TransaksiManagerDB.searchTransaksi(
-                txtCariUser.getText(),
-                txtTanggal.getText()
-            );
+    ResultSet rs = null;
 
-        while(rs.next()) {
+    if(!username.isEmpty() && tanggal.isEmpty()) {
 
-            model.addRow(new Object[]{
-                rs.getInt("id_transaksi"),
-                rs.getDate("tanggal"),
-                rs.getString("username"),
-                rs.getString("kendaraan"),
-                rs.getString("kategori"),
-                rs.getDouble("tarif"),
-                rs.getDouble("emisi_hemat")
-            });
-        }
+        rs = TransaksiManagerDB.searchByUsername(username);
 
-    } catch(Exception e) {
-        e.printStackTrace();
+    } else if(username.isEmpty() && !tanggal.isEmpty()) {
+
+        rs = TransaksiManagerDB.searchByTanggal(tanggal);
+
+    } else {
+
+        rs = TransaksiManagerDB.searchTransaksi(
+                username,
+                tanggal
+        );
     }
+
+    while(rs.next()) {
+
+        model.addRow(new Object[]{
+            rs.getInt("id_transaksi"),
+            new SimpleDateFormat("dd-MM-yyyy")
+                .format(rs.getDate("tanggal")),
+            rs.getString("username"),
+            rs.getString("kendaraan"),
+            rs.getString("kategori"),
+            rs.getDouble("tarif"),
+            rs.getDouble("emisi_hemat")
+        });
+    }
+
+    if(model.getRowCount() == 0) {
+
+        JOptionPane.showMessageDialog(
+            this,
+            "Data transaksi tidak ditemukan!"
+        );
+    }
+
+} catch(Exception e) {
+    e.printStackTrace();
+}
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed

@@ -240,7 +240,6 @@ public ManageUserForm(Admin admin) {
             }
         });
 
-        txtCariUser.setText("Cari username / nama");
         txtCariUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCariUserActionPerformed(evt);

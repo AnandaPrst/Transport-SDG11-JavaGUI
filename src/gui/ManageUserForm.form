@@ -340,9 +340,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCariUser">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Cari username / nama"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCariUserActionPerformed"/>
       </Events>
