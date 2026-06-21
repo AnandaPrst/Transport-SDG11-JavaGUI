@@ -276,7 +276,7 @@ UserManagerDB.updateGreenPoints(penumpang.getIdUser(), penumpang.getGreenPoints(
     }//GEN-LAST:event_btnHitungActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        new DashboardForm(penumpang).setVisible(true);
+        new DashboardFormNew(penumpang).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
