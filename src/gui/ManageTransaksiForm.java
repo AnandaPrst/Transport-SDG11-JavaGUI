@@ -48,12 +48,12 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
         ResultSet rs =
     TransaksiManagerDB.getAllTransaksiAdmin();
 
-        while(rs.next()) {
+        while (rs.next()) {
 
             model.addRow(new Object[]{
                 rs.getInt("id_transaksi"),
                 new SimpleDateFormat("dd-MM-yyyy")
-        .format(rs.getDate("tanggal")),
+                .format(rs.getDate("tanggal")),
                 rs.getString("username"),
                 rs.getString("kendaraan"),
                 rs.getString("kategori"),
