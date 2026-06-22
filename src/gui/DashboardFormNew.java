@@ -324,7 +324,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonHitungTarifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHitungTarifActionPerformed
-        HitungTarifForm h = new HitungTarifForm(penumpang);
+        HitungTarifFormNew h = new HitungTarifFormNew(penumpang);
         h.setVisible(true);
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonHitungTarifActionPerformed

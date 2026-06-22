@@ -182,7 +182,7 @@ public class LoginForm extends javax.swing.JFrame {
     // jika penumpang
     if (user instanceof Penumpang) {
         Penumpang penumpang = (Penumpang) user;
-        DashboardForm d = new DashboardForm(penumpang);
+        DashboardFormNew d = new DashboardFormNew(penumpang);
         d.setVisible(true);
         this.dispose();
         return;

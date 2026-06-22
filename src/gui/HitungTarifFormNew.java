@@ -4,6 +4,8 @@
  */
 package gui;
 
+import model.Penumpang;
+
 /**
  *
  * @author user
@@ -15,9 +17,12 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     /**
      * Creates new form HitungTarifFormNew
      */
-    public HitungTarifFormNew() {
-        initComponents();
-    }
+    private final Penumpang penumpang;
+
+public HitungTarifFormNew(Penumpang penumpang) {
+    initComponents();
+    this.penumpang = penumpang;
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +58,6 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(700, 520));
 
         jPanelContent.setBackground(new java.awt.Color(240, 244, 241));
 
@@ -72,14 +76,12 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         jComboBoxPilihKendaraan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTextFieldInputHalte.setText("jTextField1");
-        jTextFieldInputHalte.addActionListener(this::jTextFieldInputHalteActionPerformed);
 
         jButton1.setText("Hitung Tarif");
 
         jComboBoxPilihKendaraan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTextFieldInputHalte1.setText("jTextField1");
-        jTextFieldInputHalte1.addActionListener(this::jTextFieldInputHalte1ActionPerformed);
 
         javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
         roundedPanel2.setLayout(roundedPanel2Layout);
@@ -240,11 +242,6 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("← Kembali");
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanelHeaderDashboardLayout = new javax.swing.GroupLayout(jPanelHeaderDashboard);
         jPanelHeaderDashboard.setLayout(jPanelHeaderDashboardLayout);
@@ -272,42 +269,6 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel1MouseClicked
-
-    private void jTextFieldInputHalteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputHalteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldInputHalteActionPerformed
-
-    private void jTextFieldInputHalte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldInputHalte1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldInputHalte1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new HitungTarifFormNew().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
