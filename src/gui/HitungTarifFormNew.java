@@ -3,8 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package gui;
+import java.awt.HeadlessException;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import model.*;
+import service.CarbonCalculator;
+import service.TransaksiManagerDB;
+import service.UserManagerDB;
 
-import model.Penumpang;
 
 /**
  *
@@ -12,18 +18,55 @@ import model.Penumpang;
  */
 public class HitungTarifFormNew extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HitungTarifFormNew.class.getName());
-
-    /**
-     * Creates new form HitungTarifFormNew
-     */
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(DashboardFormNew.class.getName());
+    
     private final Penumpang penumpang;
 
-public HitungTarifFormNew(Penumpang penumpang) {
-    initComponents();
-    this.penumpang = penumpang;
-}
+    public HitungTarifFormNew(Penumpang penumpang) {
+        initComponents();
+        this.penumpang = penumpang;
+        setLocationRelativeTo(null);
 
+        cmbKendaraan.removeAllItems();
+        cmbKendaraan.addItem("Angkot");
+        cmbKendaraan.addItem("Bus");
+        cmbKendaraan.addItem("Kereta");
+        cmbKendaraan.addItem("Ojek Pangkalan");
+
+        cmbKategori.removeAllItems();
+        cmbKategori.addItem("Umum");
+        cmbKategori.addItem("Pelajar");
+        cmbKategori.addItem("Lansia");
+
+        lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
+    }
+
+    private HitungTarifFormNew() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+      private Kendaraan buatObjekKendaraan(String jenis) {
+        switch (jenis) {
+            case "Angkot" -> {
+                return new Angkot();
+            }
+            case "Bus" -> {
+                return new Bus();
+            }
+            case "Kereta" -> {
+                return new Kereta();
+            }
+            case "Ojek Pangkalan" -> {
+                return new OjekPangkalan();
+            }
+        }
+        return null;
+    }
+
+    private double diskonKategori(String kategori) {
+        if (kategori.equals("Pelajar")) return 0.8;
+        if (kategori.equals("Lansia")) return 0.7;
+        return 1.0;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,24 +81,28 @@ public HitungTarifFormNew(Penumpang penumpang) {
         jPanel1 = new javax.swing.JPanel();
         roundedPanel2 = new gui.RoundedPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxPilihKendaraan = new javax.swing.JComboBox<>();
-        jTextFieldInputHalte = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jComboBoxPilihKendaraan1 = new javax.swing.JComboBox<>();
-        jTextFieldInputHalte1 = new javax.swing.JTextField();
+        cmbKendaraan = new javax.swing.JComboBox<>();
+        txtJarak = new javax.swing.JTextField();
+        btnHitung = new javax.swing.JButton();
+        cmbKategori = new javax.swing.JComboBox<>();
+        txtHalte = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         roundedPanelLiveCard = new gui.RoundedPanel();
         jLabelLiveCard = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblTarif = new javax.swing.JLabel();
+        lblEta = new javax.swing.JLabel();
+        lblEmisi = new javax.swing.JLabel();
+        lblPoints = new javax.swing.JLabel();
         jPanelHeaderDashboard = new javax.swing.JPanel();
         jLabelHeading = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,15 +120,24 @@ public HitungTarifFormNew(Penumpang penumpang) {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Form Input");
 
-        jComboBoxPilihKendaraan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKendaraan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextFieldInputHalte.setText("jTextField1");
+        txtJarak.addActionListener(this::txtJarakActionPerformed);
 
-        jButton1.setText("Hitung Tarif");
+        btnHitung.setText("Hitung Tarif");
+        btnHitung.addActionListener(this::btnHitungActionPerformed);
 
-        jComboBoxPilihKendaraan1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextFieldInputHalte1.setText("jTextField1");
+        txtHalte.addActionListener(this::txtHalteActionPerformed);
+
+        jLabel1.setText("Jenis Kendaraan");
+
+        jLabel7.setText("Kategori Pengguna");
+
+        jLabel8.setText("Jarak (KM)");
+
+        jLabel9.setText("Jumlah Halte");
 
         javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
         roundedPanel2.setLayout(roundedPanel2Layout);
@@ -94,19 +150,26 @@ public HitungTarifFormNew(Penumpang penumpang) {
                         .addComponent(jLabel2))
                     .addGroup(roundedPanel2Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jComboBoxPilihKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jTextFieldInputHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jComboBoxPilihKendaraan1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jTextFieldInputHalte1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(roundedPanel2Layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roundedPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(roundedPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addGroup(roundedPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         roundedPanel2Layout.setVerticalGroup(
@@ -114,16 +177,24 @@ public HitungTarifFormNew(Penumpang penumpang) {
             .addGroup(roundedPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBoxPilihKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jComboBoxPilihKendaraan1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jTextFieldInputHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jTextFieldInputHalte1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(jLabel1)
+                .addGap(1, 1, 1)
+                .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addGap(0, 0, 0)
+                .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addGap(0, 0, 0)
+                .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel9)
+                .addGap(0, 0, 0)
+                .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
 
@@ -149,21 +220,21 @@ public HitungTarifFormNew(Penumpang penumpang) {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Points");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Rp");
+        lblTarif.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblTarif.setForeground(new java.awt.Color(255, 255, 255));
+        lblTarif.setText("-");
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("menit");
+        lblEta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEta.setForeground(new java.awt.Color(255, 255, 255));
+        lblEta.setText("-");
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("kg CO2");
+        lblEmisi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblEmisi.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmisi.setText("-");
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Points");
+        lblPoints.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPoints.setForeground(new java.awt.Color(255, 255, 255));
+        lblPoints.setText("-");
 
         javax.swing.GroupLayout roundedPanelLiveCardLayout = new javax.swing.GroupLayout(roundedPanelLiveCard);
         roundedPanelLiveCard.setLayout(roundedPanelLiveCardLayout);
@@ -172,14 +243,14 @@ public HitungTarifFormNew(Penumpang penumpang) {
             .addGroup(roundedPanelLiveCardLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(roundedPanelLiveCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
+                    .addComponent(lblPoints)
                     .addComponent(jLabel6)
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
+                    .addComponent(lblTarif)
+                    .addComponent(lblEta)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel9))
+                    .addComponent(lblEmisi))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelLiveCardLayout.createSequentialGroup()
                 .addContainerGap(113, Short.MAX_VALUE)
@@ -194,19 +265,19 @@ public HitungTarifFormNew(Penumpang penumpang) {
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
+                .addComponent(lblTarif)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(lblEta)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                .addComponent(lblEmisi)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
+                .addComponent(lblPoints)
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
@@ -240,8 +311,13 @@ public HitungTarifFormNew(Penumpang penumpang) {
         jLabelHeading.setForeground(new java.awt.Color(27, 77, 62));
         jLabelHeading.setText("Hitung Tarif Transportasi");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("← Kembali");
+        btnBack.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnBack.setText("← Kembali");
+        btnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelHeaderDashboardLayout = new javax.swing.GroupLayout(jPanelHeaderDashboard);
         jPanelHeaderDashboard.setLayout(jPanelHeaderDashboardLayout);
@@ -249,7 +325,7 @@ public HitungTarifFormNew(Penumpang penumpang) {
             jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jLabel1)
+                .addComponent(btnBack)
                 .addGap(136, 136, 136)
                 .addComponent(jLabelHeading)
                 .addContainerGap(218, Short.MAX_VALUE))
@@ -260,7 +336,7 @@ public HitungTarifFormNew(Penumpang penumpang) {
                 .addGap(19, 19, 19)
                 .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelHeading)
-                    .addComponent(jLabel1))
+                    .addComponent(btnBack))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -269,13 +345,106 @@ public HitungTarifFormNew(Penumpang penumpang) {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackMouseClicked
+        new DashboardFormNew(penumpang).setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackMouseClicked
+
+    private void txtJarakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJarakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtJarakActionPerformed
+
+    private void txtHalteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHalteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHalteActionPerformed
+
+    private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
+        try {
+            String jenis = cmbKendaraan.getSelectedItem().toString();
+            String kategori = cmbKategori.getSelectedItem().toString();
+
+            double jarak = Double.parseDouble(txtJarak.getText());
+            int halte = Integer.parseInt(txtHalte.getText());
+
+            if (jarak <= 0 || halte < 0) {
+                JOptionPane.showMessageDialog(this, "Input tidak valid!");
+                return;
+            }
+
+            Kendaraan kendaraan = buatObjekKendaraan(jenis);
+
+            // override terjadi di sini
+            double tarif = kendaraan.hitungTarif(jarak, halte);
+
+            // diskon kategori (polymorphism penumpang)
+            tarif = tarif * diskonKategori(kategori);
+
+            double eta = kendaraan.hitungETA(jarak);
+
+            // overload carbon calculator
+            double emisiHemat = CarbonCalculator.hitungPenghematan(jarak, "mobil");
+
+            int pointsBaru = (int) (emisiHemat * 10);
+            penumpang.tambahPoints(pointsBaru);
+
+            lblTarif.setText("Rp " + String.format("%.0f", tarif));
+            lblEta.setText(String.format("%.2f jam", eta));
+            lblEmisi.setText(String.format("%.2f kg CO2", emisiHemat));
+            lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
+
+            // simpan transaksi
+            Transaksi transaksi = new Transaksi(
+                    new Date(),
+                    jenis,
+                    kategori,
+                    jarak,
+                    halte,
+                    tarif,
+                    eta,
+                    emisiHemat
+            );
+
+            TransaksiManagerDB.tambahTransaksi(penumpang.getIdUser(), transaksi);
+            UserManagerDB.updateGreenPoints(penumpang.getIdUser(), penumpang.getGreenPoints());
+
+            JOptionPane.showMessageDialog(this, "Perhitungan berhasil!");
+
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Input harus berupa angka!");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHitungActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new HitungTarifFormNew().setVisible(true));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBoxPilihKendaraan;
-    private javax.swing.JComboBox<String> jComboBoxPilihKendaraan1;
+    private javax.swing.JLabel btnBack;
+    private javax.swing.JButton btnHitung;
+    private javax.swing.JComboBox<String> cmbKategori;
+    private javax.swing.JComboBox<String> cmbKendaraan;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -290,9 +459,13 @@ public HitungTarifFormNew(Penumpang penumpang) {
     private javax.swing.JPanel jPanelContent;
     private javax.swing.JPanel jPanelHeaderDashboard;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextFieldInputHalte;
-    private javax.swing.JTextField jTextFieldInputHalte1;
+    private javax.swing.JLabel lblEmisi;
+    private javax.swing.JLabel lblEta;
+    private javax.swing.JLabel lblPoints;
+    private javax.swing.JLabel lblTarif;
     private gui.RoundedPanel roundedPanel2;
     private gui.RoundedPanel roundedPanelLiveCard;
+    private javax.swing.JTextField txtHalte;
+    private javax.swing.JTextField txtJarak;
     // End of variables declaration//GEN-END:variables
 }
