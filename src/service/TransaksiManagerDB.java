@@ -24,10 +24,10 @@ public class TransaksiManagerDB {
             ps.setTimestamp(2, new java.sql.Timestamp(t.getTanggal().getTime()));
             ps.setString(3, t.getKendaraan());
             ps.setString(4, t.getKategori());
-            ps.setDouble(5, t.getJarakKm());
+            ps.setDouble(5, t.getJarak());
             ps.setInt(6, t.getHalte());
             ps.setDouble(7, t.getTarif());
-            ps.setDouble(8, t.getEtaMenit());
+            ps.setDouble(8, t.getEtaJam());
             ps.setDouble(9, t.getEmisiHemat());
 
             ps.executeUpdate();
