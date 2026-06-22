@@ -63,7 +63,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jPanelContent = new javax.swing.JPanel();
         jPanelHeaderDashboard = new javax.swing.JPanel();
         jLabelHeading = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         SidebarToggleButton = new javax.swing.JLabel();
         Container = new javax.swing.JPanel();
@@ -269,11 +268,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jLabelHeading.setForeground(new java.awt.Color(27, 77, 62));
         jLabelHeading.setText("SmartFare Dashboard");
 
-        jButton1.setBackground(new java.awt.Color(231, 76, 60));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Logout");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
-
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(189, 195, 199));
 
@@ -293,24 +287,17 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(SidebarToggleButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelHeading)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(36, 36, 36))
+                .addGap(36, 407, Short.MAX_VALUE))
             .addComponent(jSeparator1)
         );
         jPanelHeaderDashboardLayout.setVerticalGroup(
             jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
-                .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelHeading)
-                            .addComponent(SidebarToggleButton)))
-                    .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jButton1)))
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelHeading)
+                    .addComponent(SidebarToggleButton))
+                .addGap(38, 38, 38)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -522,11 +509,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButtonHitungTarifActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new LoginForm().setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void SidebarToggleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SidebarToggleButtonMouseClicked
         if (isSidebarVisible) {
             // Sembunyikan sidebar sepenuhnya dari layar
@@ -597,7 +579,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
     private javax.swing.JPanel SideBarPanel;
     private javax.swing.JLabel SidebarToggleButton;
     private javax.swing.JButton btnLogout5;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonHitungTarif;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

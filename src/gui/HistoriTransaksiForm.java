@@ -22,14 +22,15 @@ import javax.swing.JOptionPane;
 
 
 public class HistoriTransaksiForm extends javax.swing.JFrame {
-    private Penumpang Penumpang;
+    private Penumpang penumpang;
     /**
      * Creates new form ManageTransaksiForm
      */
    public HistoriTransaksiForm(Penumpang Penumpang) {
     initComponents();
+    JLabelUsername.setText("" + penumpang.getUsername());
 
-    this.Penumpang = Penumpang;
+    this.penumpang = Penumpang;
 
     setLocationRelativeTo(null);
 
@@ -54,7 +55,7 @@ public class HistoriTransaksiForm extends javax.swing.JFrame {
                 rs.getInt("id_transaksi"),
                 new SimpleDateFormat("dd-MM-yyyy")
                 .format(rs.getDate("tanggal")),
-                rs.getString("username"),
+//                rs.getString("username"),
                 rs.getString("kendaraan"),
                 rs.getString("kategori"),
                 rs.getDouble("tarif"),
@@ -76,35 +77,28 @@ public class HistoriTransaksiForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnSearch = new javax.swing.JButton();
-        txtCariUser = new javax.swing.JTextField();
-        txtTanggal = new javax.swing.JTextField();
-        btnReset = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTransaksi = new javax.swing.JTable();
-        sideBarPanel1 = new gui.SideBarPanel();
+        jPanelHeaderDashboard = new javax.swing.JPanel();
+        jLabelHeading = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        SidebarToggleButton = new javax.swing.JLabel();
+        SideBarPanel = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        btnLogout5 = new javax.swing.JButton();
+        MenuDashboard = new javax.swing.JPanel();
+        lblDashboard5 = new javax.swing.JLabel();
+        JLabelUsername = new javax.swing.JLabel();
+        jLabelRole = new javax.swing.JLabel();
+        MenuHitungTarif = new javax.swing.JPanel();
+        lblDashboardHitungTarif = new javax.swing.JLabel();
+        MenuHistoriTransaksi = new javax.swing.JPanel();
+        lblDashboard7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnSearch.setText("Cari");
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-
-        txtCariUser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCariUserActionPerformed(evt);
-            }
-        });
-
-        btnReset.setText("Reset");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
-            }
-        });
+        jPanel3.setLayout(new java.awt.BorderLayout());
 
         tblTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -119,120 +113,291 @@ public class HistoriTransaksiForm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblTransaksi);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(sideBarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtCariUser, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnReset)
-                        .addGap(0, 124, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+        jPanel3.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanelHeaderDashboard.setBackground(java.awt.Color.white);
+        jPanelHeaderDashboard.setPreferredSize(new java.awt.Dimension(700, 80));
+
+        jLabelHeading.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabelHeading.setForeground(new java.awt.Color(27, 77, 62));
+        jLabelHeading.setText("Riwayat Transaksi");
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(189, 195, 199));
+
+        SidebarToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/hamburger (1) (1).png"))); // NOI18N
+        SidebarToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SidebarToggleButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelHeaderDashboardLayout = new javax.swing.GroupLayout(jPanelHeaderDashboard);
+        jPanelHeaderDashboard.setLayout(jPanelHeaderDashboardLayout);
+        jPanelHeaderDashboardLayout.setHorizontalGroup(
+            jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(SidebarToggleButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelHeading)
+                .addGap(36, 479, Short.MAX_VALUE))
+            .addComponent(jSeparator1)
+        );
+        jPanelHeaderDashboardLayout.setVerticalGroup(
+            jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelHeading)
+                    .addComponent(SidebarToggleButton))
+                .addGap(38, 38, 38)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.add(jPanelHeaderDashboard, java.awt.BorderLayout.NORTH);
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        jPanel11.setBackground(new java.awt.Color(0, 102, 51));
+
+        btnLogout5.setBackground(new java.awt.Color(255, 0, 0));
+        btnLogout5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnLogout5.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout5.setText("Logout");
+        btnLogout5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogout5ActionPerformed(evt);
+            }
+        });
+
+        MenuDashboard.setBackground(new java.awt.Color(0, 102, 51));
+        MenuDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuDashboardMouseClicked(evt);
+            }
+        });
+
+        lblDashboard5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDashboard5.setForeground(new java.awt.Color(255, 255, 255));
+        lblDashboard5.setText("Dashboard");
+        lblDashboard5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDashboard5MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MenuDashboardLayout = new javax.swing.GroupLayout(MenuDashboard);
+        MenuDashboard.setLayout(MenuDashboardLayout);
+        MenuDashboardLayout.setHorizontalGroup(
+            MenuDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuDashboardLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDashboard5)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        MenuDashboardLayout.setVerticalGroup(
+            MenuDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuDashboardLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblDashboard5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        JLabelUsername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        JLabelUsername.setForeground(new java.awt.Color(255, 255, 255));
+        JLabelUsername.setText("Admin");
+
+        jLabelRole.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelRole.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelRole.setText("Selamat datang");
+
+        MenuHitungTarif.setBackground(new java.awt.Color(0, 102, 51));
+        MenuHitungTarif.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuHitungTarifMouseClicked(evt);
+            }
+        });
+
+        lblDashboardHitungTarif.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDashboardHitungTarif.setForeground(new java.awt.Color(255, 255, 255));
+        lblDashboardHitungTarif.setText("Hitung Tarif");
+        lblDashboardHitungTarif.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDashboardHitungTarifMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MenuHitungTarifLayout = new javax.swing.GroupLayout(MenuHitungTarif);
+        MenuHitungTarif.setLayout(MenuHitungTarifLayout);
+        MenuHitungTarifLayout.setHorizontalGroup(
+            MenuHitungTarifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuHitungTarifLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDashboardHitungTarif)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        MenuHitungTarifLayout.setVerticalGroup(
+            MenuHitungTarifLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuHitungTarifLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblDashboardHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        MenuHistoriTransaksi.setBackground(new java.awt.Color(0, 153, 102));
+        MenuHistoriTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                MenuHistoriTransaksiMouseClicked(evt);
+            }
+        });
+
+        lblDashboard7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblDashboard7.setForeground(new java.awt.Color(255, 255, 255));
+        lblDashboard7.setText("Riwayat");
+        lblDashboard7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDashboard7MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout MenuHistoriTransaksiLayout = new javax.swing.GroupLayout(MenuHistoriTransaksi);
+        MenuHistoriTransaksi.setLayout(MenuHistoriTransaksiLayout);
+        MenuHistoriTransaksiLayout.setHorizontalGroup(
+            MenuHistoriTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MenuHistoriTransaksiLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDashboard7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        MenuHistoriTransaksiLayout.setVerticalGroup(
+            MenuHistoriTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuHistoriTransaksiLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblDashboard7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MenuDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MenuHitungTarif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(MenuHistoriTransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(JLabelUsername))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(btnLogout5, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel11Layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jLabelRole)))
+                        .addGap(0, 22, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSearch)
-                    .addComponent(txtCariUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReset))
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(JLabelUsername)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(sideBarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addComponent(jLabelRole)
+                .addGap(17, 17, 17)
+                .addComponent(MenuDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MenuHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(MenuHistoriTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                .addComponent(btnLogout5)
+                .addContainerGap())
         );
+
+        javax.swing.GroupLayout SideBarPanelLayout = new javax.swing.GroupLayout(SideBarPanel);
+        SideBarPanel.setLayout(SideBarPanelLayout);
+        SideBarPanelLayout.setHorizontalGroup(
+            SideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SideBarPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        SideBarPanelLayout.setVerticalGroup(
+            SideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SideBarPanelLayout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 45, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(SideBarPanel, java.awt.BorderLayout.WEST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    private boolean isSidebarVisible = true;
+    private void SidebarToggleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SidebarToggleButtonMouseClicked
+        if (isSidebarVisible) {
+            // Sembunyikan sidebar sepenuhnya dari layar
+            SideBarPanel.setVisible(false);
+            isSidebarVisible = false;
+        } else {
+            // Munculkan kembali sidebar ke layar
+            SideBarPanel.setVisible(true);
+            isSidebarVisible = true;
+        }
 
-    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        String username = txtCariUser.getText().trim();
-String tanggal = txtTanggal.getText().trim();
+        // Refresh layout Frame utama agar area putih langsung melebar otomatis
+        this.revalidate();
+        this.repaint();// TODO add your handling code here:
+    }//GEN-LAST:event_SidebarToggleButtonMouseClicked
 
-if(username.isEmpty() && tanggal.isEmpty()){
-    JOptionPane.showMessageDialog(
-        this,
-        "Masukkan username atau tanggal terlebih dahulu!"
-    );
-    return;
-}
-        
-        DefaultTableModel model =
-        (DefaultTableModel) tblTransaksi.getModel();
+    private void btnLogout5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout5ActionPerformed
+        new LoginForm().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogout5ActionPerformed
 
-    model.setRowCount(0);
+    private void lblDashboard5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboard5MouseClicked
 
-try {
+    }//GEN-LAST:event_lblDashboard5MouseClicked
 
-    ResultSet rs = null;
+    private void MenuDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuDashboardMouseClicked
+        DashboardFormNew dashboard = new DashboardFormNew(penumpang);
+        dashboard.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuDashboardMouseClicked
 
-    if(!username.isEmpty() && tanggal.isEmpty()) {
+    private void lblDashboardHitungTarifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardHitungTarifMouseClicked
+        HitungTarifFormNew h = new HitungTarifFormNew(penumpang);
+        h.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_lblDashboardHitungTarifMouseClicked
 
-        rs = TransaksiManagerDB.searchByUsername(username);
+    private void MenuHitungTarifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuHitungTarifMouseClicked
+        HitungTarifFormNew tarifForm = new HitungTarifFormNew(this.penumpang);
+        tarifForm.setVisible(true);
 
-    } else if(username.isEmpty() && !tanggal.isEmpty()) {
+        // 2. Cari JFrame induk yang sedang aktif menampung sidebar ini, lalu tutup
+        javax.swing.JFrame parentFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
+        if (parentFrame != null) {
+            parentFrame.dispose();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuHitungTarifMouseClicked
 
-        rs = TransaksiManagerDB.searchByTanggal(tanggal);
-
-    } else {
-
-        rs = TransaksiManagerDB.searchTransaksi(
-                username,
-                tanggal
-        );
-    }
-
-    while(rs.next()) {
-
-        model.addRow(new Object[]{
-            rs.getInt("id_transaksi"),
-            new SimpleDateFormat("dd-MM-yyyy")
-                .format(rs.getDate("tanggal")),
-            rs.getString("username"),
-            rs.getString("kendaraan"),
-            rs.getString("kategori"),
-            rs.getDouble("tarif"),
-            rs.getDouble("emisi_hemat")
-        });
-    }
-
-    if(model.getRowCount() == 0) {
-
-        JOptionPane.showMessageDialog(
-            this,
-            "Data transaksi tidak ditemukan!"
-        );
-    }
-
-} catch(Exception e) {
-    e.printStackTrace();
-}
-    }//GEN-LAST:event_btnSearchActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-    txtCariUser.setText("");
-    txtTanggal.setText("");
-
-    loadTransaksi();
-    }//GEN-LAST:event_btnResetActionPerformed
-
-    private void txtCariUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCariUserActionPerformed
+    private void lblDashboard7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboard7MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCariUserActionPerformed
+    }//GEN-LAST:event_lblDashboard7MouseClicked
+
+    private void MenuHistoriTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuHistoriTransaksiMouseClicked
+        HistoriTransaksiForm histori = new HistoriTransaksiForm(penumpang);
+        histori.setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_MenuHistoriTransaksiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -240,12 +405,23 @@ try {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnSearch;
+    private javax.swing.JLabel JLabelUsername;
+    private javax.swing.JPanel MenuDashboard;
+    private javax.swing.JPanel MenuHistoriTransaksi;
+    private javax.swing.JPanel MenuHitungTarif;
+    private javax.swing.JPanel SideBarPanel;
+    private javax.swing.JLabel SidebarToggleButton;
+    private javax.swing.JButton btnLogout5;
+    private javax.swing.JLabel jLabelHeading;
+    private javax.swing.JLabel jLabelRole;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanelHeaderDashboard;
     private javax.swing.JScrollPane jScrollPane1;
-    private gui.SideBarPanel sideBarPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lblDashboard5;
+    private javax.swing.JLabel lblDashboard7;
+    private javax.swing.JLabel lblDashboardHitungTarif;
     private javax.swing.JTable tblTransaksi;
-    private javax.swing.JTextField txtCariUser;
-    private javax.swing.JTextField txtTanggal;
     // End of variables declaration//GEN-END:variables
 }
