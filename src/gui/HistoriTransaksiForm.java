@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import service.TransaksiManagerDB;
-import model.Admin;
+import model.Penumpang;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
@@ -21,15 +21,15 @@ import javax.swing.JOptionPane;
  */
 
 
-public class ManageTransaksiForm extends javax.swing.JFrame {
-    private Admin admin;
+public class HistoriTransaksiForm extends javax.swing.JFrame {
+    private Penumpang Penumpang;
     /**
      * Creates new form ManageTransaksiForm
      */
-   public ManageTransaksiForm(Admin admin) {
+   public HistoriTransaksiForm(Penumpang Penumpang) {
     initComponents();
 
-    this.admin = admin;
+    this.Penumpang = Penumpang;
 
     setLocationRelativeTo(null);
 
@@ -46,14 +46,14 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
     try {
 
         ResultSet rs =
-    TransaksiManagerDB.getAllTransaksiAdmin();
+    TransaksiManagerDB.getAllTransaksi();
 
-        while(rs.next()) {
+        while (rs.next()) {
 
             model.addRow(new Object[]{
                 rs.getInt("id_transaksi"),
                 new SimpleDateFormat("dd-MM-yyyy")
-        .format(rs.getDate("tanggal")),
+                .format(rs.getDate("tanggal")),
                 rs.getString("username"),
                 rs.getString("kendaraan"),
                 rs.getString("kategori"),
@@ -76,130 +76,15 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnLogout = new javax.swing.JButton();
-        lblUser = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        lblDashboard = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        lblTransaksi = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
         txtCariUser = new javax.swing.JTextField();
         txtTanggal = new javax.swing.JTextField();
         btnReset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTransaksi = new javax.swing.JTable();
+        sideBarPanel1 = new gui.SideBarPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setBackground(new java.awt.Color(0, 102, 51));
-
-        btnLogout.setBackground(new java.awt.Color(255, 0, 0));
-        btnLogout.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogout.setText("Logout");
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
-            }
-        });
-
-        lblUser.setBackground(new java.awt.Color(255, 255, 255));
-        lblUser.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblUser.setForeground(new java.awt.Color(255, 255, 255));
-        lblUser.setText("Kelola User");
-        lblUser.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblUserMouseClicked(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Admin");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Administrator");
-
-        lblDashboard.setBackground(new java.awt.Color(255, 255, 255));
-        lblDashboard.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDashboard.setForeground(new java.awt.Color(255, 255, 255));
-        lblDashboard.setText("Dashboard");
-        lblDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblDashboardMouseClicked(evt);
-            }
-        });
-
-        jPanel4.setBackground(new java.awt.Color(0, 153, 102));
-
-        lblTransaksi.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblTransaksi.setForeground(new java.awt.Color(255, 255, 255));
-        lblTransaksi.setText("Kelola Transaksi");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTransaksi)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
-                                .addComponent(jLabel2))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblUser)
-                                    .addComponent(lblDashboard))))
-                        .addGap(0, 16, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel1)
-                .addGap(5, 5, 5)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(lblDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUser, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addContainerGap())
-        );
 
         btnSearch.setText("Cari");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -239,8 +124,8 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(sideBarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtCariUser, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,13 +135,12 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
                         .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnReset)
-                        .addGap(0, 132, Short.MAX_VALUE))
+                        .addGap(0, 124, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -267,25 +151,13 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(sideBarPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lblUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserMouseClicked
-        new ManageUserForm(admin).setVisible(true);
-    dispose();
-    }//GEN-LAST:event_lblUserMouseClicked
-
-    private void lblDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboardMouseClicked
-        new AdminDashboardForm(admin).setVisible(true);
-dispose();
-    }//GEN-LAST:event_lblDashboardMouseClicked
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-                new LoginForm().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         String username = txtCariUser.getText().trim();
@@ -368,17 +240,10 @@ try {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblDashboard;
-    private javax.swing.JLabel lblTransaksi;
-    private javax.swing.JLabel lblUser;
+    private gui.SideBarPanel sideBarPanel1;
     private javax.swing.JTable tblTransaksi;
     private javax.swing.JTextField txtCariUser;
     private javax.swing.JTextField txtTanggal;
