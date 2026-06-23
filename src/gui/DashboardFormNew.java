@@ -58,8 +58,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jLabelRole = new javax.swing.JLabel();
         MenuHitungTarif = new javax.swing.JPanel();
         lblDashboardHitungTarif = new javax.swing.JLabel();
-        MenuHistoriTransaksi = new javax.swing.JPanel();
-        lblDashboard7 = new javax.swing.JLabel();
         jPanelContent = new javax.swing.JPanel();
         jPanelHeaderDashboard = new javax.swing.JPanel();
         jLabelHeading = new javax.swing.JLabel();
@@ -82,7 +80,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jButtonHitungTarif = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(842, 508));
 
         jPanel11.setBackground(new java.awt.Color(0, 102, 51));
 
@@ -164,38 +161,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(lblDashboardHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        MenuHistoriTransaksi.setBackground(new java.awt.Color(0, 102, 51));
-        MenuHistoriTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuHistoriTransaksiMouseClicked(evt);
-            }
-        });
-
-        lblDashboard7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDashboard7.setForeground(new java.awt.Color(255, 255, 255));
-        lblDashboard7.setText("Riwayat");
-        lblDashboard7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblDashboard7MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout MenuHistoriTransaksiLayout = new javax.swing.GroupLayout(MenuHistoriTransaksi);
-        MenuHistoriTransaksi.setLayout(MenuHistoriTransaksiLayout);
-        MenuHistoriTransaksiLayout.setHorizontalGroup(
-            MenuHistoriTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuHistoriTransaksiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblDashboard7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        MenuHistoriTransaksiLayout.setVerticalGroup(
-            MenuHistoriTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuHistoriTransaksiLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblDashboard7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -206,8 +171,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(MenuDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MenuHitungTarif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MenuHistoriTransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(MenuHitungTarif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
@@ -233,9 +197,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(MenuDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MenuHistoriTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
                 .addComponent(btnLogout5)
                 .addContainerGap())
         );
@@ -547,25 +509,10 @@ public class DashboardFormNew extends javax.swing.JFrame {
     }//GEN-LAST:event_lblDashboardHitungTarifMouseClicked
 
     private void MenuHitungTarifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuHitungTarifMouseClicked
-        HitungTarifFormNew tarifForm = new HitungTarifFormNew(this.penumpang);
-        tarifForm.setVisible(true);
-
-        // 2. Cari JFrame induk yang sedang aktif menampung sidebar ini, lalu tutup
-        javax.swing.JFrame parentFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-        if (parentFrame != null) {
-            parentFrame.dispose();
-        }        // TODO add your handling code here:
+        HitungTarifFormNew h = new HitungTarifFormNew(penumpang);
+        h.setVisible(true);
+        this.dispose();                // TODO add your handling code here:
     }//GEN-LAST:event_MenuHitungTarifMouseClicked
-
-    private void lblDashboard7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboard7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblDashboard7MouseClicked
-
-    private void MenuHistoriTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuHistoriTransaksiMouseClicked
-        HistoriTransaksiForm histori = new HistoriTransaksiForm(penumpang);
-        histori.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_MenuHistoriTransaksiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -574,7 +521,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JLabel JLabelUsername;
     private javax.swing.JPanel MenuDashboard;
-    private javax.swing.JPanel MenuHistoriTransaksi;
     private javax.swing.JPanel MenuHitungTarif;
     private javax.swing.JPanel SideBarPanel;
     private javax.swing.JLabel SidebarToggleButton;
@@ -594,7 +540,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelHeaderDashboard;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblDashboard5;
-    private javax.swing.JLabel lblDashboard7;
     private javax.swing.JLabel lblDashboardHitungTarif;
     private gui.RoundedPanel roundedPanel2;
     private gui.RoundedPanel roundedPanel3;

@@ -86,8 +86,6 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         jLabelRole = new javax.swing.JLabel();
         MenuHitungTarif = new javax.swing.JPanel();
         lblDashboardHitungTarif = new javax.swing.JLabel();
-        MenuHistoriTransaksi = new javax.swing.JPanel();
-        lblDashboard7 = new javax.swing.JLabel();
         jPanelContent = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         roundedPanel2 = new gui.RoundedPanel();
@@ -198,38 +196,6 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                 .addComponent(lblDashboardHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        MenuHistoriTransaksi.setBackground(new java.awt.Color(0, 102, 51));
-        MenuHistoriTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MenuHistoriTransaksiMouseClicked(evt);
-            }
-        });
-
-        lblDashboard7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblDashboard7.setForeground(new java.awt.Color(255, 255, 255));
-        lblDashboard7.setText("Riwayat");
-        lblDashboard7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblDashboard7MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout MenuHistoriTransaksiLayout = new javax.swing.GroupLayout(MenuHistoriTransaksi);
-        MenuHistoriTransaksi.setLayout(MenuHistoriTransaksiLayout);
-        MenuHistoriTransaksiLayout.setHorizontalGroup(
-            MenuHistoriTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MenuHistoriTransaksiLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblDashboard7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        MenuHistoriTransaksiLayout.setVerticalGroup(
-            MenuHistoriTransaksiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MenuHistoriTransaksiLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(lblDashboard7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
@@ -240,8 +206,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(MenuDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MenuHitungTarif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MenuHistoriTransaksi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(MenuHitungTarif, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel11Layout.createSequentialGroup()
@@ -267,9 +232,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                 .addComponent(MenuDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MenuHistoriTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 212, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
                 .addComponent(btnLogout5)
                 .addContainerGap())
         );
@@ -619,25 +582,10 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     }//GEN-LAST:event_lblDashboardHitungTarifMouseClicked
 
     private void MenuHitungTarifMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuHitungTarifMouseClicked
-        HitungTarifFormNew tarifForm = new HitungTarifFormNew(this.penumpang);
-        tarifForm.setVisible(true);
-
-        // 2. Cari JFrame induk yang sedang aktif menampung sidebar ini, lalu tutup
-        javax.swing.JFrame parentFrame = (javax.swing.JFrame) javax.swing.SwingUtilities.getWindowAncestor(this);
-        if (parentFrame != null) {
-            parentFrame.dispose();
-        }        // TODO add your handling code here:
+        HitungTarifFormNew h = new HitungTarifFormNew(penumpang);
+        h.setVisible(true);
+        this.dispose();        // TODO add your handling code here:                // TODO add your handling code here:
     }//GEN-LAST:event_MenuHitungTarifMouseClicked
-
-    private void lblDashboard7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboard7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblDashboard7MouseClicked
-
-    private void MenuHistoriTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuHistoriTransaksiMouseClicked
-        HistoriTransaksiForm histori = new HistoriTransaksiForm(penumpang);
-        histori.setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_MenuHistoriTransaksiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -667,12 +615,9 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JLabelUsername;
     private javax.swing.JPanel MenuDashboard;
-    private javax.swing.JPanel MenuHistoriTransaksi;
     private javax.swing.JPanel MenuHitungTarif;
     private javax.swing.JPanel SideBarPanel;
     private javax.swing.JLabel SidebarToggleButton;
-    private javax.swing.JLabel btnBack;
-    private javax.swing.JLabel btnBack1;
     private javax.swing.JButton btnHitung;
     private javax.swing.JButton btnLogout5;
     private javax.swing.JComboBox<String> cmbKategori;
@@ -686,20 +631,15 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelHeading;
-    private javax.swing.JLabel jLabelHeading1;
     private javax.swing.JLabel jLabelHeading3;
     private javax.swing.JLabel jLabelLiveCard;
     private javax.swing.JLabel jLabelRole;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanelContent;
-    private javax.swing.JPanel jPanelHeaderDashboard;
-    private javax.swing.JPanel jPanelHeaderDashboard1;
     private javax.swing.JPanel jPanelHeaderDashboard3;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblDashboard5;
-    private javax.swing.JLabel lblDashboard7;
     private javax.swing.JLabel lblDashboardHitungTarif;
     private javax.swing.JLabel lblEmisi;
     private javax.swing.JLabel lblEta;
