@@ -130,7 +130,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
         lblDashboardHitungTarif = new javax.swing.JLabel();
         jPanelContent = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        roundedPanel2 = new gui.RoundedPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         cmbKendaraan = new javax.swing.JComboBox<>();
         txtJarak = new javax.swing.JTextField();
@@ -143,7 +143,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
         jLabel10 = new javax.swing.JLabel();
         lblDetailKendaraan = new javax.swing.JLabel();
         cmbDetailKendaraan = new javax.swing.JComboBox<>();
-        roundedPanelLiveCard = new gui.RoundedPanel();
+        jPanel3 = new javax.swing.JPanel();
         jLabelLiveCard = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -201,7 +201,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
 
         JLabelUsername.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         JLabelUsername.setForeground(new java.awt.Color(255, 255, 255));
-        JLabelUsername.setText("Admin");
+        JLabelUsername.setText("User");
 
         jLabelRole.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabelRole.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,7 +275,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
                 .addComponent(MenuDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 258, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addComponent(btnLogout5)
                 .addContainerGap())
         );
@@ -290,9 +290,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
         );
         SideBarPanelLayout.setVerticalGroup(
             SideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SideBarPanelLayout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 17, Short.MAX_VALUE))
+            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(SideBarPanel, java.awt.BorderLayout.WEST);
@@ -304,7 +302,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
         jPanel1.setPreferredSize(new java.awt.Dimension(645, 345));
         jPanel1.setLayout(new java.awt.GridLayout(1, 2, 20, 0));
 
-        roundedPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(java.awt.Color.green);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Form Input");
@@ -333,68 +331,59 @@ isiDetailKendaraan(); // pertama kali dijalankan
 
         cmbDetailKendaraan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan pilih kendaraan" }));
 
-        javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
-        roundedPanel2.setLayout(roundedPanel2Layout);
-        roundedPanel2Layout.setHorizontalGroup(
-            roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel2Layout.createSequentialGroup()
-                .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(roundedPanel2Layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(jLabel2))
-                            .addGroup(roundedPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(roundedPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel1))
-                            .addGroup(roundedPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel8))
-                            .addGroup(roundedPanel2Layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jLabel9)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDetailKendaraan)
-                            .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtHalte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbKendaraan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cmbDetailKendaraan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel10))))
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(123, 123, 123)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(cmbDetailKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDetailKendaraan)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel10)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
-                        .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
-                        .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82))))
         );
-        roundedPanel2Layout.setVerticalGroup(
-            roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanel2Layout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblDetailKendaraan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblDetailKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbDetailKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -402,14 +391,14 @@ isiDetailKendaraan(); // pertama kali dijalankan
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jPanel1.add(roundedPanel2);
+        jPanel1.add(jPanel2);
 
-        roundedPanelLiveCard.setBackground(new java.awt.Color(30, 132, 73));
+        jPanel3.setBackground(java.awt.Color.red);
 
         jLabelLiveCard.setBackground(new java.awt.Color(255, 255, 255));
         jLabelLiveCard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -445,13 +434,13 @@ isiDetailKendaraan(); // pertama kali dijalankan
         lblPoints.setForeground(new java.awt.Color(255, 255, 255));
         lblPoints.setText("-");
 
-        javax.swing.GroupLayout roundedPanelLiveCardLayout = new javax.swing.GroupLayout(roundedPanelLiveCard);
-        roundedPanelLiveCard.setLayout(roundedPanelLiveCardLayout);
-        roundedPanelLiveCardLayout.setHorizontalGroup(
-            roundedPanelLiveCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanelLiveCardLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(roundedPanelLiveCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPoints)
                     .addComponent(jLabel6)
                     .addComponent(jLabel4)
@@ -460,15 +449,15 @@ isiDetailKendaraan(); // pertama kali dijalankan
                     .addComponent(lblEta)
                     .addComponent(jLabel5)
                     .addComponent(lblEmisi))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelLiveCardLayout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(291, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelLiveCard)
                 .addGap(104, 104, 104))
         );
-        roundedPanelLiveCardLayout.setVerticalGroup(
-            roundedPanelLiveCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundedPanelLiveCardLayout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelLiveCard)
                 .addGap(29, 29, 29)
@@ -487,10 +476,10 @@ isiDetailKendaraan(); // pertama kali dijalankan
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPoints)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
 
-        jPanel1.add(roundedPanelLiveCard);
+        jPanel1.add(jPanel3);
 
         jPanelContent.add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -520,7 +509,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
                 .addComponent(SidebarToggleButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelHeading3)
-                .addGap(36, 284, Short.MAX_VALUE))
+                .addGap(36, 367, Short.MAX_VALUE))
             .addComponent(jSeparator2)
         );
         jPanelHeaderDashboard3Layout.setVerticalGroup(
@@ -541,77 +530,6 @@ isiDetailKendaraan(); // pertama kali dijalankan
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtJarakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJarakActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtJarakActionPerformed
-
-    private void txtHalteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHalteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHalteActionPerformed
-
-    private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
-        try {
-            String jenis = cmbKendaraan.getSelectedItem().toString();
-            String detailKendaraan = cmbDetailKendaraan.getSelectedItem().toString();
-            String kategori = cmbKategori.getSelectedItem().toString();
-
-            double jarak = Double.parseDouble(txtJarak.getText());
-            int halte = Integer.parseInt(txtHalte.getText());
-
-            if (jarak <= 0 || halte < 0) {
-                JOptionPane.showMessageDialog(this, "Input tidak valid!");
-                return;
-            }
-
-            Kendaraan kendaraan = buatObjekKendaraan(jenis);
-
-            // override terjadi di sini
-            double tarif = kendaraan.hitungTarif(jarak, halte);
-
-            // diskon kategori (polymorphism penumpang)
-            tarif = tarif * diskonKategori(kategori);
-
-            double eta = kendaraan.hitungETA(jarak);
-
-            // overload carbon calculator
-            double emisiHemat = CarbonCalculator.hitungPenghematan(jarak, "mobil");
-
-            int pointsBaru = (int) (emisiHemat * 10);
-            penumpang.tambahPoints(pointsBaru);
-
-            lblTarif.setText("Rp " + String.format("%.0f", tarif));
-lblEta.setText(String.format("%.2f jam", eta));
-lblEmisi.setText(String.format("%.2f kg CO2", emisiHemat));
-lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
-
-// Bulatkan sebelum disimpan ke database
-tarif = Math.round(tarif * 100.0) / 100.0;
-eta = Math.round(eta * 100.0) / 100.0;
-emisiHemat = Math.round(emisiHemat * 100.0) / 100.0;
-
-// simpan transaksi
-Transaksi transaksi = new Transaksi(
-        new Date(),
-        jenis,
-        detailKendaraan,
-        kategori,
-        jarak,
-        halte,
-        tarif,
-        eta,
-        emisiHemat
-);
-
-            TransaksiManagerDB.tambahTransaksi(penumpang.getIdUser(), transaksi);
-            UserManagerDB.updateGreenPoints(penumpang.getIdUser(), penumpang.getGreenPoints());
-
-            JOptionPane.showMessageDialog(this, "Perhitungan berhasil!");
-
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Input harus berupa angka!");
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHitungActionPerformed
     
     private boolean isSidebarVisible = true;
     private void SidebarToggleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SidebarToggleButtonMouseClicked
@@ -658,6 +576,77 @@ Transaksi transaksi = new Transaksi(
         h.setVisible(true);
         this.dispose();        // TODO add your handling code here:                // TODO add your handling code here:
     }//GEN-LAST:event_MenuHitungTarifMouseClicked
+
+    private void txtHalteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHalteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHalteActionPerformed
+
+    private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
+        try {
+            String jenis = cmbKendaraan.getSelectedItem().toString();
+            String detailKendaraan = cmbDetailKendaraan.getSelectedItem().toString();
+            String kategori = cmbKategori.getSelectedItem().toString();
+
+            double jarak = Double.parseDouble(txtJarak.getText());
+            int halte = Integer.parseInt(txtHalte.getText());
+
+            if (jarak <= 0 || halte < 0) {
+                JOptionPane.showMessageDialog(this, "Input tidak valid!");
+                return;
+            }
+
+            Kendaraan kendaraan = buatObjekKendaraan(jenis);
+
+            // override terjadi di sini
+            double tarif = kendaraan.hitungTarif(jarak, halte);
+
+            // diskon kategori (polymorphism penumpang)
+            tarif = tarif * diskonKategori(kategori);
+
+            double eta = kendaraan.hitungETA(jarak);
+
+            // overload carbon calculator
+            double emisiHemat = CarbonCalculator.hitungPenghematan(jarak, "mobil");
+
+            int pointsBaru = (int) (emisiHemat * 10);
+            penumpang.tambahPoints(pointsBaru);
+
+            lblTarif.setText("Rp " + String.format("%.0f", tarif));
+            lblEta.setText(String.format("%.2f jam", eta));
+            lblEmisi.setText(String.format("%.2f kg CO2", emisiHemat));
+            lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
+
+            // Bulatkan sebelum disimpan ke database
+            tarif = Math.round(tarif * 100.0) / 100.0;
+            eta = Math.round(eta * 100.0) / 100.0;
+            emisiHemat = Math.round(emisiHemat * 100.0) / 100.0;
+
+            // simpan transaksi
+            Transaksi transaksi = new Transaksi(
+                new Date(),
+                jenis,
+                detailKendaraan,
+                kategori,
+                jarak,
+                halte,
+                tarif,
+                eta,
+                emisiHemat
+            );
+
+            TransaksiManagerDB.tambahTransaksi(penumpang.getIdUser(), transaksi);
+            UserManagerDB.updateGreenPoints(penumpang.getIdUser(), penumpang.getGreenPoints());
+
+            JOptionPane.showMessageDialog(this, "Perhitungan berhasil!");
+
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Input harus berupa angka!");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHitungActionPerformed
+
+    private void txtJarakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJarakActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtJarakActionPerformed
 
     private void cmbKendaraanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKendaraanActionPerformed
         // TODO add your handling code here:
@@ -713,6 +702,8 @@ Transaksi transaksi = new Transaksi(
     private javax.swing.JLabel jLabelRole;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelContent;
     private javax.swing.JPanel jPanelHeaderDashboard3;
     private javax.swing.JSeparator jSeparator2;
@@ -723,8 +714,6 @@ Transaksi transaksi = new Transaksi(
     private javax.swing.JLabel lblEta;
     private javax.swing.JLabel lblPoints;
     private javax.swing.JLabel lblTarif;
-    private gui.RoundedPanel roundedPanel2;
-    private gui.RoundedPanel roundedPanelLiveCard;
     private javax.swing.JTextField txtHalte;
     private javax.swing.JTextField txtJarak;
     // End of variables declaration//GEN-END:variables

@@ -534,6 +534,29 @@ public class TransaksiManagerDB {
     return null;
 }
     
+    public static ResultSet getEmisiBerdasarkanKendaraan(int idUser) {
+        try {
+            Connection conn = DBConnection.getConnection();
+            // Kelompokkan total emisi hemat berdasarkan nama kendaraan
+            String sql = "SELECT kendaraan, SUM(emisi_hemat) as total_emisi FROM transaksi WHERE id_user = ? GROUP BY kendaraan";
 
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idUser);
+
+            return ps.executeQuery();
+
+        } catch (SQLException e) {
+            System.out.println("Gagal load data chart: " + e.getMessage());
+        }
+        return null;
+    }
     
+    // Query untuk Bar Chart Pembayaran (Total Tarif per Kendaraan)
+    public static ResultSet getTotalPembayaranPerKendaraan(int idUser) throws SQLException {
+        String sql = "SELECT kendaraan, SUM(tarif) as total FROM transaksi WHERE id_user = ? GROUP BY kendaraan";
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idUser);
+        return ps.executeQuery();
+    }
 }
