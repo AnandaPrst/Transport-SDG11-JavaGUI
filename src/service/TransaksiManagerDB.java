@@ -14,8 +14,8 @@ public class TransaksiManagerDB {
 
     public static void tambahTransaksi(int idUser, Transaksi t) {
 
-        String sql = "INSERT INTO transaksi(id_user, tanggal, kendaraan, kategori, jarak_km, halte, tarif, eta_menit, emisi_hemat) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO transaksi(id_user, tanggal, kendaraan, detail_kendaraan, kategori, jarak_km, halte, tarif, eta_menit, emisi_hemat) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -23,12 +23,13 @@ public class TransaksiManagerDB {
             ps.setInt(1, idUser);
             ps.setTimestamp(2, new java.sql.Timestamp(t.getTanggal().getTime()));
             ps.setString(3, t.getKendaraan());
-            ps.setString(4, t.getKategori());
-            ps.setDouble(5, t.getJarak());
-            ps.setInt(6, t.getHalte());
-            ps.setDouble(7, t.getTarif());
-            ps.setDouble(8, t.getEtaJam());
-            ps.setDouble(9, t.getEmisiHemat());
+            ps.setString(4, t.getDetailKendaraan());
+            ps.setString(5, t.getKategori());
+            ps.setDouble(6, t.getJarak());
+            ps.setInt(7, t.getHalte());
+            ps.setDouble(8, t.getTarif());
+            ps.setDouble(9, t.getEtaJam());
+            ps.setDouble(10, t.getEmisiHemat());
 
             ps.executeUpdate();
 
@@ -209,6 +210,7 @@ public class TransaksiManagerDB {
         "u.username, " +
         "t.tanggal, " +
         "t.kendaraan, " +
+        "t.detail_kendaraan, " +
         "t.kategori, " +
         "t.tarif, " +
         "t.emisi_hemat " +
@@ -298,8 +300,8 @@ public class TransaksiManagerDB {
         DBConnection.getConnection();
 
         String sql =
-           "SELECT t.id_transaksi, t.tanggal, " +
-    "u.username, t.kendaraan, t.kategori, " +
+     "SELECT t.id_transaksi, t.tanggal, " +
+    "u.username, t.kendaraan, t.detail_kendaraan, t.kategori, " +
     "t.tarif, t.emisi_hemat " +
     "FROM transaksi t " +
     "JOIN users u ON t.id_user = u.id_user " +
@@ -329,6 +331,7 @@ public class TransaksiManagerDB {
         "u.username, " +
         "t.tanggal, " +
         "t.kendaraan, " +
+        "t.detail_kendaraan, " +
         "t.kategori, " +
         "t.tarif, " +
         "t.emisi_hemat " +
@@ -352,6 +355,7 @@ public class TransaksiManagerDB {
     public static boolean updateTransaksi(
         int idTransaksi,
         String kendaraan,
+        String detailKendaraan,
         String kategori,
         double tarif) {
 
@@ -362,16 +366,17 @@ public class TransaksiManagerDB {
 
         String sql =
         "UPDATE transaksi " +
-        "SET kendaraan=?, kategori=?, tarif=? " +
+        "SET kendaraan=?, detail_kendaraan=?, kategori=?, tarif=? " +
         "WHERE id_transaksi=?";
 
         PreparedStatement ps =
         conn.prepareStatement(sql);
 
         ps.setString(1, kendaraan);
-        ps.setString(2, kategori);
-        ps.setDouble(3, tarif);
-        ps.setInt(4, idTransaksi);
+        ps.setString(2, detailKendaraan);
+        ps.setString(3, kategori);
+        ps.setDouble(4, tarif);
+        ps.setInt(5, idTransaksi);
 
         return ps.executeUpdate() > 0;
 
@@ -395,6 +400,7 @@ public class TransaksiManagerDB {
         "u.username, " +
         "t.tanggal, " +
         "t.kendaraan, " +
+        "t.detail_kendaraan, " +     
         "t.kategori, " +
         "t.tarif, " +
         "t.emisi_hemat " +
@@ -486,7 +492,7 @@ public class TransaksiManagerDB {
 
         String sql =
 "SELECT t.id_transaksi, t.tanggal, "
-+ "u.username, t.kendaraan, "
++ "u.username, t.kendaraan, t.detail_kendaraan, "
 + "t.kategori, t.tarif, t.emisi_hemat "
 + "FROM transaksi t "
 + "JOIN users u ON t.id_user=u.id_user "
@@ -511,18 +517,18 @@ public class TransaksiManagerDB {
         Connection conn = DBConnection.getConnection();
 
         String sql =
-        "SELECT kendaraan, COUNT(*) AS jumlah "
-        + "FROM transaksi "
-        + "GROUP BY kendaraan "
-        + "ORDER BY jumlah DESC "
-        + "LIMIT 1";
+        "SELECT kendaraan, detail_kendaraan, COUNT(*) AS jumlah " +
+        "FROM transaksi " +
+        "GROUP BY kendaraan, detail_kendaraan " +
+        "ORDER BY jumlah DESC " +
+        "LIMIT 1";
 
-        PreparedStatement ps =
-        conn.prepareStatement(sql);
+        PreparedStatement ps = conn.prepareStatement(sql);
 
         return ps.executeQuery();
 
     } catch(SQLException e) {
+        e.printStackTrace();
     }
 
     return null;

@@ -57,8 +57,8 @@ public class ManageTransaksiForm extends javax.swing.JFrame {
                 rs.getString("username"),
                 rs.getString("kendaraan"),
                 rs.getString("kategori"),
-                rs.getDouble("tarif"),
-                rs.getDouble("emisi_hemat")
+                String.format("%.0f", rs.getDouble("tarif")),
+    String.format("%.2f", rs.getDouble("emisi_hemat"))
             });
         }
 

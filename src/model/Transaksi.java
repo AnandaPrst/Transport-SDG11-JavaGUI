@@ -9,6 +9,7 @@ import java.util.Date;
 public class Transaksi {
     private Date tanggal;
     private String kendaraan;
+    private String detailKendaraan;
     private String kategori;
     private double jarak;
     private int halte;
@@ -16,10 +17,11 @@ public class Transaksi {
     private double etaJam;
     private double emisiHemat;
 
-    public Transaksi(Date tanggal, String kendaraan, String kategori,
+    public Transaksi(Date tanggal, String kendaraan, String detailKendaraan, String kategori,
             double jarak, int halte, double tarif, double etaJam, double emisiHemat) {
         this.tanggal = tanggal;
         this.kendaraan = kendaraan;
+        this.detailKendaraan = detailKendaraan;
         this.kategori = kategori;
         this.jarak = jarak;
         this.halte = halte;
@@ -30,6 +32,7 @@ public class Transaksi {
 
     public Date getTanggal() { return tanggal; }
     public String getKendaraan() { return kendaraan; }
+    public String getDetailKendaraan() { return detailKendaraan; }
     public String getKategori() { return kategori; }
     public double getJarak() { return jarak; }
     public int getHalte() { return halte; }

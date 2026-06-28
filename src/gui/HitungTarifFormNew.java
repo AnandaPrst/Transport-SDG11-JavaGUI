@@ -33,6 +33,9 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         cmbKendaraan.addItem("Bus");
         cmbKendaraan.addItem("Kereta");
         cmbKendaraan.addItem("Ojek Pangkalan");
+        cmbKendaraan.addActionListener(e -> isiDetailKendaraan());
+
+isiDetailKendaraan(); // pertama kali dijalankan
 
         cmbKategori.removeAllItems();
         cmbKategori.addItem("Umum");
@@ -68,6 +71,45 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         if (kategori.equals("Lansia")) return 0.7;
         return 1.0;
     }
+    
+    private void isiDetailKendaraan() {
+
+    cmbDetailKendaraan.removeAllItems();
+
+    String jenis = cmbKendaraan.getSelectedItem().toString();
+
+    switch (jenis) {
+
+        case "Angkot":
+            cmbDetailKendaraan.addItem("Angkot Kota");
+            cmbDetailKendaraan.addItem("Angkot Pedesaan");
+            cmbDetailKendaraan.addItem("Lainnya");
+            break;
+
+        case "Bus":
+            cmbDetailKendaraan.addItem("DAMRI");
+            cmbDetailKendaraan.addItem("TransJakarta");
+            cmbDetailKendaraan.addItem("Sinar Jaya");
+            cmbDetailKendaraan.addItem("Rosalia Indah");
+            cmbDetailKendaraan.addItem("Lainnya");
+            break;
+
+        case "Kereta":
+            cmbDetailKendaraan.addItem("KRL");
+            cmbDetailKendaraan.addItem("MRT");
+            cmbDetailKendaraan.addItem("LRT");
+            cmbDetailKendaraan.addItem("KA Jarak Jauh");
+            cmbDetailKendaraan.addItem("Lainnya");
+            break;
+
+        case "Ojek Pangkalan":
+            cmbDetailKendaraan.addItem("Pangkalan Terminal");
+            cmbDetailKendaraan.addItem("Pangkalan Pasar");
+            cmbDetailKendaraan.addItem("Pangkalan Stasiun");
+            cmbDetailKendaraan.addItem("Lainnya");
+            break;
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,9 +138,11 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         cmbKategori = new javax.swing.JComboBox<>();
         txtHalte = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblDetailKendaraan = new javax.swing.JLabel();
+        cmbDetailKendaraan = new javax.swing.JComboBox<>();
         roundedPanelLiveCard = new gui.RoundedPanel();
         jLabelLiveCard = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -146,8 +190,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
             MenuDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(MenuDashboardLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblDashboard5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblDashboard5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         MenuDashboardLayout.setVerticalGroup(
             MenuDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +292,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
             SideBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(SideBarPanelLayout.createSequentialGroup()
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
 
         getContentPane().add(SideBarPanel, java.awt.BorderLayout.WEST);
@@ -267,23 +310,28 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         jLabel2.setText("Form Input");
 
         cmbKendaraan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKendaraan.addActionListener(this::cmbKendaraanActionPerformed);
 
         txtJarak.addActionListener(this::txtJarakActionPerformed);
 
         btnHitung.setText("Hitung Tarif");
         btnHitung.addActionListener(this::btnHitungActionPerformed);
 
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan pilih kategori" }));
 
         txtHalte.addActionListener(this::txtHalteActionPerformed);
 
         jLabel1.setText("Jenis Kendaraan");
 
-        jLabel7.setText("Kategori Pengguna");
-
         jLabel8.setText("Jarak (KM)");
 
         jLabel9.setText("Jumlah Halte");
+
+        jLabel10.setText("Kategori Pengguna");
+
+        lblDetailKendaraan.setText("Detail Kendaraan");
+
+        cmbDetailKendaraan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Silahkan pilih kendaraan" }));
 
         javax.swing.GroupLayout roundedPanel2Layout = new javax.swing.GroupLayout(roundedPanel2);
         roundedPanel2.setLayout(roundedPanel2Layout);
@@ -292,31 +340,42 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
             .addGroup(roundedPanel2Layout.createSequentialGroup()
                 .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jLabel2))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
+                            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                                .addGap(123, 123, 123)
+                                .addComponent(jLabel2))
+                            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel1))
+                            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel8))
+                            .addGroup(roundedPanel2Layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel9)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
-                    .addGroup(roundedPanel2Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblDetailKendaraan)
+                            .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtHalte, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbKendaraan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmbDetailKendaraan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel10))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
+                        .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanel2Layout.createSequentialGroup()
+                        .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82))))
         );
         roundedPanel2Layout.setVerticalGroup(
             roundedPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,23 +384,27 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel1)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblDetailKendaraan)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbDetailKendaraan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addGap(0, 0, 0)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtJarak, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtHalte, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnHitung, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel1.add(roundedPanel2);
@@ -399,7 +462,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                     .addComponent(lblEmisi))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundedPanelLiveCardLayout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addComponent(jLabelLiveCard)
                 .addGap(104, 104, 104))
         );
@@ -424,7 +487,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPoints)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jPanel1.add(roundedPanelLiveCard);
@@ -457,7 +520,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
                 .addComponent(SidebarToggleButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelHeading3)
-                .addGap(36, 287, Short.MAX_VALUE))
+                .addGap(36, 284, Short.MAX_VALUE))
             .addComponent(jSeparator2)
         );
         jPanelHeaderDashboard3Layout.setVerticalGroup(
@@ -490,6 +553,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     private void btnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungActionPerformed
         try {
             String jenis = cmbKendaraan.getSelectedItem().toString();
+            String detailKendaraan = cmbDetailKendaraan.getSelectedItem().toString();
             String kategori = cmbKategori.getSelectedItem().toString();
 
             double jarak = Double.parseDouble(txtJarak.getText());
@@ -517,21 +581,27 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
             penumpang.tambahPoints(pointsBaru);
 
             lblTarif.setText("Rp " + String.format("%.0f", tarif));
-            lblEta.setText(String.format("%.2f jam", eta));
-            lblEmisi.setText(String.format("%.2f kg CO2", emisiHemat));
-            lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
+lblEta.setText(String.format("%.2f jam", eta));
+lblEmisi.setText(String.format("%.2f kg CO2", emisiHemat));
+lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
 
-            // simpan transaksi
-            Transaksi transaksi = new Transaksi(
-                    new Date(),
-                    jenis,
-                    kategori,
-                    jarak,
-                    halte,
-                    tarif,
-                    eta,
-                    emisiHemat
-            );
+// Bulatkan sebelum disimpan ke database
+tarif = Math.round(tarif * 100.0) / 100.0;
+eta = Math.round(eta * 100.0) / 100.0;
+emisiHemat = Math.round(emisiHemat * 100.0) / 100.0;
+
+// simpan transaksi
+Transaksi transaksi = new Transaksi(
+        new Date(),
+        jenis,
+        detailKendaraan,
+        kategori,
+        jarak,
+        halte,
+        tarif,
+        eta,
+        emisiHemat
+);
 
             TransaksiManagerDB.tambahTransaksi(penumpang.getIdUser(), transaksi);
             UserManagerDB.updateGreenPoints(penumpang.getIdUser(), penumpang.getGreenPoints());
@@ -566,7 +636,9 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogout5ActionPerformed
 
     private void lblDashboard5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDashboard5MouseClicked
-
+ DashboardFormNew dashboard = new DashboardFormNew(penumpang);
+        dashboard.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblDashboard5MouseClicked
 
     private void MenuDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuDashboardMouseClicked
@@ -586,6 +658,10 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
         h.setVisible(true);
         this.dispose();        // TODO add your handling code here:                // TODO add your handling code here:
     }//GEN-LAST:event_MenuHitungTarifMouseClicked
+
+    private void cmbKendaraanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKendaraanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKendaraanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -620,15 +696,16 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     private javax.swing.JLabel SidebarToggleButton;
     private javax.swing.JButton btnHitung;
     private javax.swing.JButton btnLogout5;
+    private javax.swing.JComboBox<String> cmbDetailKendaraan;
     private javax.swing.JComboBox<String> cmbKategori;
     private javax.swing.JComboBox<String> cmbKendaraan;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelHeading3;
@@ -641,6 +718,7 @@ public class HitungTarifFormNew extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblDashboard5;
     private javax.swing.JLabel lblDashboardHitungTarif;
+    private javax.swing.JLabel lblDetailKendaraan;
     private javax.swing.JLabel lblEmisi;
     private javax.swing.JLabel lblEta;
     private javax.swing.JLabel lblPoints;
