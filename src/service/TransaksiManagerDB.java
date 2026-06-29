@@ -559,4 +559,85 @@ public class TransaksiManagerDB {
         ps.setInt(1, idUser);
         return ps.executeQuery();
     }
+    
+    public static ResultSet getChartPembayaran(int idUser) {
+
+        try {
+
+            Connection conn = DBConnection.getConnection();
+
+            String sql
+                    = "SELECT DATE(tanggal) AS tanggal, "
+                    + "SUM(tarif) AS total_pembayaran "
+                    + "FROM transaksi "
+                    + "WHERE id_user=? "
+                    + "GROUP BY DATE(tanggal) "
+                    + "ORDER BY DATE(tanggal)";
+
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
+
+            ps.setInt(1, idUser);
+
+            return ps.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
+    public static ResultSet getChartCarbonSaving(int idUser) {
+
+        try {
+
+            Connection conn = DBConnection.getConnection();
+
+            String sql
+                    = "SELECT DATE(tanggal) AS tanggal, "
+                    + "SUM(emisi_hemat) AS total_emisi "
+                    + "FROM transaksi "
+                    + "WHERE id_user=? "
+                    + "GROUP BY DATE(tanggal) "
+                    + "ORDER BY DATE(tanggal)";
+
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
+
+            ps.setInt(1, idUser);
+
+            return ps.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+    
+    public static ResultSet getLeaderboard() {
+
+        try {
+
+            Connection conn = DBConnection.getConnection();
+
+            String sql
+                    = "SELECT username, green_points "
+                    + "FROM users "
+                    + "WHERE role='penumpang' "
+                    + "ORDER BY green_points DESC, username ASC "
+                    + "LIMIT 5";
+
+            PreparedStatement ps
+                    = conn.prepareStatement(sql);
+
+            return ps.executeQuery();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }

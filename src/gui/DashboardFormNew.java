@@ -4,6 +4,20 @@
  */
 package gui;
 
+import java.awt.BorderLayout;
+import java.sql.ResultSet;
+import java.awt.Color;
+import org.jfree.chart.block.BlockBorder;
+import java.awt.BasicStroke;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import model.Penumpang;
 import service.TransaksiManagerDB;
 
@@ -20,13 +34,14 @@ public class DashboardFormNew extends javax.swing.JFrame {
      */
     private final Penumpang penumpang;
 
-    private boolean isSidebarVisible = true;
-
     public DashboardFormNew(Penumpang penumpang) {
         initComponents();
         this.penumpang = penumpang;
         setLocationRelativeTo(null);
         tampilkanData();
+        tampilChartPembayaran();
+        tampilChartCarbon();
+        tampilLeaderboard();
     }
 
     private void tampilkanData() {
@@ -38,6 +53,187 @@ public class DashboardFormNew extends javax.swing.JFrame {
 
         jLabelTotalPembayaran.setText("Rp " + String.format("%,.0f", totalBayar));
         jLabelCarbonSaving.setText(String.format("%.2f", totalEmisi) + " kg CO₂");
+    }
+    
+    private void tampilChartPembayaran() {
+        DefaultCategoryDataset dataset
+                = new DefaultCategoryDataset();
+        try {
+            ResultSet rs
+                    = TransaksiManagerDB.getChartPembayaran(
+                            penumpang.getIdUser());
+            while (rs.next()) {
+                dataset.addValue(
+                        rs.getDouble("total_pembayaran"),
+                        "Pembayaran",
+                        rs.getString("tanggal"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        JFreeChart chart
+                = ChartFactory.createLineChart(
+                        "Pembayaran Harian",
+                        "Tanggal",
+                        "Rp",
+                        dataset);
+
+        ChartPanel chartPanel
+                = new ChartPanel(chart);
+        chart.setBackgroundPaint(Color.WHITE);
+
+        CategoryPlot plot = chart.getCategoryPlot();
+
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setOutlinePaint(null);
+
+        plot.setRangeGridlinePaint(new Color(230, 230, 230));
+        plot.setDomainGridlinePaint(new Color(230, 230, 230));
+        
+        
+        LineAndShapeRenderer renderer
+                = (LineAndShapeRenderer) plot.getRenderer();
+
+        renderer.setSeriesPaint(0, new Color(22, 163, 74));
+
+        renderer.setSeriesStroke(
+                0,
+                new BasicStroke(3f)
+        );
+
+        chart.getLegend().setFrame(BlockBorder.NONE);
+
+        panelChartPembayaran.removeAll();
+        panelChartPembayaran.setLayout(new BorderLayout());
+        panelChartPembayaran.add(chartPanel);
+
+        panelChartPembayaran.validate();
+    }
+
+    private void tampilChartCarbon() {
+
+        DefaultCategoryDataset dataset
+                = new DefaultCategoryDataset();
+
+        try {
+
+            ResultSet rs
+                    = TransaksiManagerDB.getChartCarbonSaving(
+                            penumpang.getIdUser());
+
+            while (rs.next()) {
+
+                dataset.addValue(
+                        rs.getDouble("total_emisi"),
+                        "Carbon Saving",
+                        rs.getString("tanggal"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JFreeChart chart
+                = ChartFactory.createLineChart(
+                        "Carbon Saving",
+                        "Tanggal",
+                        "Kg CO₂",
+                        dataset);
+
+        ChartPanel cp
+                = new ChartPanel(chart);
+        
+        chart.setBackgroundPaint(Color.WHITE);
+
+        CategoryPlot plot = chart.getCategoryPlot();
+
+        plot.setBackgroundPaint(Color.WHITE);
+        plot.setOutlinePaint(null);
+
+        plot.setRangeGridlinePaint(new Color(230, 230, 230));
+        plot.setDomainGridlinePaint(new Color(230, 230, 230));
+        
+        LineAndShapeRenderer renderer
+                = (LineAndShapeRenderer) plot.getRenderer();
+
+        renderer.setSeriesPaint(0, new Color(22, 163, 74));
+
+        renderer.setSeriesStroke(
+                0,
+                new BasicStroke(3f)
+        );
+        
+        chart.setBorderVisible(false);
+
+        plot.setOutlineVisible(false);
+
+        chart.getLegend().setBorder(0, 0, 0, 0);
+
+//        chart.getLegend().setFrame(BlockBorder.NONE);
+
+        panelChartCarbon.removeAll();
+        panelChartCarbon.setLayout(new BorderLayout());
+        panelChartCarbon.add(cp);
+
+        panelChartCarbon.validate();
+    }
+
+    private void tampilLeaderboard() {
+
+        DefaultCategoryDataset dataset
+                = new DefaultCategoryDataset();
+
+        try {
+
+            ResultSet rs
+                    = TransaksiManagerDB.getLeaderboard();
+
+            while (rs.next()) {
+
+                dataset.addValue(
+                        rs.getInt("green_points"),
+                        "Points",
+                        rs.getString("username"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        JFreeChart chart
+                = ChartFactory.createBarChart(
+                        "Leaderboard",
+                        "User",
+                        "Points",
+                        dataset);
+
+        CategoryPlot plot = chart.getCategoryPlot();
+
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+
+        renderer.setSeriesPaint(0, new Color(22, 163, 74));
+        plot.setOrientation(
+                PlotOrientation.HORIZONTAL);
+
+        ChartPanel cp
+                = new ChartPanel(chart);
+        
+        chart.setBackgroundPaint(Color.WHITE);
+        plot.setBackgroundPaint(Color.WHITE);
+
+        plot.setOutlineVisible(false);
+
+        plot.setRangeGridlinePaint(new Color(230, 230, 230));
+
+        plot.setDomainGridlinePaint(new Color(230, 230, 230));
+
+        panelLeaderboard.removeAll();
+        panelLeaderboard.setLayout(new BorderLayout());
+        panelLeaderboard.add(cp);
+
+        panelLeaderboard.validate();
     }
     
     /**
@@ -62,16 +258,15 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jPanelHeaderDashboard = new javax.swing.JPanel();
         jLabelHeading = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        SidebarToggleButton = new javax.swing.JLabel();
         Container = new javax.swing.JPanel();
         jPanelCardFrame = new javax.swing.JPanel();
-        GreenPointCard = new javax.swing.JPanel();
+        panelLeaderboard = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabelGreenPoints = new javax.swing.JLabel();
-        CarbonSavingCard = new javax.swing.JPanel();
+        panelChartCarbon = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabelCarbonSaving = new javax.swing.JLabel();
-        TotalPembayaranCard = new javax.swing.JPanel();
+        panelChartPembayaran = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabelTotalPembayaran = new javax.swing.JLabel();
 
@@ -227,21 +422,12 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(189, 195, 199));
 
-        SidebarToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/hamburger (1) (1).png"))); // NOI18N
-        SidebarToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SidebarToggleButtonMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelHeaderDashboardLayout = new javax.swing.GroupLayout(jPanelHeaderDashboard);
         jPanelHeaderDashboard.setLayout(jPanelHeaderDashboardLayout);
         jPanelHeaderDashboardLayout.setHorizontalGroup(
             jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(SidebarToggleButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(50, 50, 50)
                 .addComponent(jLabelHeading)
                 .addGap(36, 407, Short.MAX_VALUE))
             .addComponent(jSeparator1)
@@ -250,9 +436,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
             jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderDashboardLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelHeaderDashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelHeading)
-                    .addComponent(SidebarToggleButton))
+                .addComponent(jLabelHeading)
                 .addGap(38, 38, 38)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -266,7 +450,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jPanelCardFrame.setPreferredSize(new java.awt.Dimension(700, 200));
         jPanelCardFrame.setLayout(new java.awt.GridLayout(3, 1, 25, 20));
 
-        GreenPointCard.setBackground(java.awt.Color.red);
+        panelLeaderboard.setBackground(java.awt.Color.red);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Green Points");
@@ -274,20 +458,20 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jLabelGreenPoints.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelGreenPoints.setText("Points");
 
-        javax.swing.GroupLayout GreenPointCardLayout = new javax.swing.GroupLayout(GreenPointCard);
-        GreenPointCard.setLayout(GreenPointCardLayout);
-        GreenPointCardLayout.setHorizontalGroup(
-            GreenPointCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GreenPointCardLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelLeaderboardLayout = new javax.swing.GroupLayout(panelLeaderboard);
+        panelLeaderboard.setLayout(panelLeaderboardLayout);
+        panelLeaderboardLayout.setHorizontalGroup(
+            panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLeaderboardLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(GreenPointCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelGreenPoints)
                     .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        GreenPointCardLayout.setVerticalGroup(
-            GreenPointCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(GreenPointCardLayout.createSequentialGroup()
+        panelLeaderboardLayout.setVerticalGroup(
+            panelLeaderboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLeaderboardLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5)
                 .addGap(52, 52, 52)
@@ -295,9 +479,9 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jPanelCardFrame.add(GreenPointCard);
+        jPanelCardFrame.add(panelLeaderboard);
 
-        CarbonSavingCard.setBackground(java.awt.Color.green);
+        panelChartCarbon.setBackground(java.awt.Color.green);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setText("Carbon Saving");
@@ -305,23 +489,23 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jLabelCarbonSaving.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelCarbonSaving.setText("Carbon");
 
-        javax.swing.GroupLayout CarbonSavingCardLayout = new javax.swing.GroupLayout(CarbonSavingCard);
-        CarbonSavingCard.setLayout(CarbonSavingCardLayout);
-        CarbonSavingCardLayout.setHorizontalGroup(
-            CarbonSavingCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CarbonSavingCardLayout.createSequentialGroup()
-                .addGroup(CarbonSavingCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CarbonSavingCardLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelChartCarbonLayout = new javax.swing.GroupLayout(panelChartCarbon);
+        panelChartCarbon.setLayout(panelChartCarbonLayout);
+        panelChartCarbonLayout.setHorizontalGroup(
+            panelChartCarbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChartCarbonLayout.createSequentialGroup()
+                .addGroup(panelChartCarbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelChartCarbonLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(jLabelCarbonSaving))
-                    .addGroup(CarbonSavingCardLayout.createSequentialGroup()
+                    .addGroup(panelChartCarbonLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jLabel6)))
                 .addContainerGap(586, Short.MAX_VALUE))
         );
-        CarbonSavingCardLayout.setVerticalGroup(
-            CarbonSavingCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CarbonSavingCardLayout.createSequentialGroup()
+        panelChartCarbonLayout.setVerticalGroup(
+            panelChartCarbonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChartCarbonLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel6)
                 .addGap(55, 55, 55)
@@ -329,9 +513,9 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jPanelCardFrame.add(CarbonSavingCard);
+        jPanelCardFrame.add(panelChartCarbon);
 
-        TotalPembayaranCard.setBackground(java.awt.Color.blue);
+        panelChartPembayaran.setBackground(java.awt.Color.blue);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Total Pembayaran");
@@ -339,20 +523,20 @@ public class DashboardFormNew extends javax.swing.JFrame {
         jLabelTotalPembayaran.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabelTotalPembayaran.setText("Pembayaran");
 
-        javax.swing.GroupLayout TotalPembayaranCardLayout = new javax.swing.GroupLayout(TotalPembayaranCard);
-        TotalPembayaranCard.setLayout(TotalPembayaranCardLayout);
-        TotalPembayaranCardLayout.setHorizontalGroup(
-            TotalPembayaranCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TotalPembayaranCardLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelChartPembayaranLayout = new javax.swing.GroupLayout(panelChartPembayaran);
+        panelChartPembayaran.setLayout(panelChartPembayaranLayout);
+        panelChartPembayaranLayout.setHorizontalGroup(
+            panelChartPembayaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChartPembayaranLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(TotalPembayaranCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelChartPembayaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTotalPembayaran)
                     .addComponent(jLabel7))
                 .addContainerGap(540, Short.MAX_VALUE))
         );
-        TotalPembayaranCardLayout.setVerticalGroup(
-            TotalPembayaranCardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(TotalPembayaranCardLayout.createSequentialGroup()
+        panelChartPembayaranLayout.setVerticalGroup(
+            panelChartPembayaranLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelChartPembayaranLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
@@ -360,7 +544,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addGap(22, 22, 22))
         );
 
-        jPanelCardFrame.add(TotalPembayaranCard);
+        jPanelCardFrame.add(panelChartPembayaran);
 
         Container.add(jPanelCardFrame, java.awt.BorderLayout.CENTER);
 
@@ -370,22 +554,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void SidebarToggleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SidebarToggleButtonMouseClicked
-        if (isSidebarVisible) {
-            // Sembunyikan sidebar sepenuhnya dari layar
-            SideBarPanel.setVisible(false);
-            isSidebarVisible = false;
-        } else {
-            // Munculkan kembali sidebar ke layar
-            SideBarPanel.setVisible(true);
-            isSidebarVisible = true;
-        }
-
-        // Refresh layout Frame utama agar area putih langsung melebar otomatis
-        this.revalidate();
-        this.repaint();// TODO add your handling code here:
-    }//GEN-LAST:event_SidebarToggleButtonMouseClicked
 
     private void btnLogout5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout5ActionPerformed
         new LoginForm().setVisible(true);
@@ -418,15 +586,11 @@ public class DashboardFormNew extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CarbonSavingCard;
     private javax.swing.JPanel Container;
-    private javax.swing.JPanel GreenPointCard;
     private javax.swing.JLabel JLabelUsername;
     private javax.swing.JPanel MenuDashboard;
     private javax.swing.JPanel MenuHitungTarif;
     private javax.swing.JPanel SideBarPanel;
-    private javax.swing.JLabel SidebarToggleButton;
-    private javax.swing.JPanel TotalPembayaranCard;
     private javax.swing.JButton btnLogout5;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -443,5 +607,8 @@ public class DashboardFormNew extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblDashboard5;
     private javax.swing.JLabel lblDashboardHitungTarif;
+    private javax.swing.JPanel panelChartCarbon;
+    private javax.swing.JPanel panelChartPembayaran;
+    private javax.swing.JPanel panelLeaderboard;
     // End of variables declaration//GEN-END:variables
 }

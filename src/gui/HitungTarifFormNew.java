@@ -156,9 +156,9 @@ isiDetailKendaraan(); // pertama kali dijalankan
         jPanelHeaderDashboard3 = new javax.swing.JPanel();
         jLabelHeading3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        SidebarToggleButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(java.awt.Color.white);
 
         jPanel11.setBackground(new java.awt.Color(0, 102, 51));
 
@@ -302,7 +302,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
         jPanel1.setPreferredSize(new java.awt.Dimension(645, 345));
         jPanel1.setLayout(new java.awt.GridLayout(1, 2, 20, 0));
 
-        jPanel2.setBackground(java.awt.Color.green);
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Form Input");
@@ -493,21 +493,12 @@ isiDetailKendaraan(); // pertama kali dijalankan
         jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator2.setForeground(new java.awt.Color(189, 195, 199));
 
-        SidebarToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/hamburger (1) (1).png"))); // NOI18N
-        SidebarToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SidebarToggleButtonMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelHeaderDashboard3Layout = new javax.swing.GroupLayout(jPanelHeaderDashboard3);
         jPanelHeaderDashboard3.setLayout(jPanelHeaderDashboard3Layout);
         jPanelHeaderDashboard3Layout.setHorizontalGroup(
             jPanelHeaderDashboard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderDashboard3Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(SidebarToggleButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(50, 50, 50)
                 .addComponent(jLabelHeading3)
                 .addGap(36, 367, Short.MAX_VALUE))
             .addComponent(jSeparator2)
@@ -516,9 +507,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
             jPanelHeaderDashboard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelHeaderDashboard3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelHeaderDashboard3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelHeading3)
-                    .addComponent(SidebarToggleButton))
+                .addComponent(jLabelHeading3)
                 .addGap(38, 38, 38)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -532,22 +521,6 @@ isiDetailKendaraan(); // pertama kali dijalankan
     }// </editor-fold>//GEN-END:initComponents
     
     private boolean isSidebarVisible = true;
-    private void SidebarToggleButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SidebarToggleButtonMouseClicked
-        if (isSidebarVisible) {
-            // Sembunyikan sidebar sepenuhnya dari layar
-            SideBarPanel.setVisible(false);
-            isSidebarVisible = false;
-        } else {
-            // Munculkan kembali sidebar ke layar
-            SideBarPanel.setVisible(true);
-            isSidebarVisible = true;
-        }
-
-        // Refresh layout Frame utama agar area putih langsung melebar otomatis
-        this.revalidate();
-        this.repaint();// TODO add your handling code here:
-    }//GEN-LAST:event_SidebarToggleButtonMouseClicked
-
     private void btnLogout5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogout5ActionPerformed
         new LoginForm().setVisible(true);
         this.dispose();
@@ -682,7 +655,6 @@ isiDetailKendaraan(); // pertama kali dijalankan
     private javax.swing.JPanel MenuDashboard;
     private javax.swing.JPanel MenuHitungTarif;
     private javax.swing.JPanel SideBarPanel;
-    private javax.swing.JLabel SidebarToggleButton;
     private javax.swing.JButton btnHitung;
     private javax.swing.JButton btnLogout5;
     private javax.swing.JComboBox<String> cmbDetailKendaraan;
