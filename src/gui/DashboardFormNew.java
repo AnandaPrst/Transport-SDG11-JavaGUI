@@ -388,7 +388,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(MenuDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 398, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addComponent(btnLogout5)
                 .addContainerGap())
         );
@@ -448,9 +448,9 @@ public class DashboardFormNew extends javax.swing.JFrame {
 
         jPanelCardFrame.setBackground(new java.awt.Color(244, 246, 249));
         jPanelCardFrame.setPreferredSize(new java.awt.Dimension(700, 200));
-        jPanelCardFrame.setLayout(new java.awt.GridLayout(3, 1, 25, 20));
+        jPanelCardFrame.setLayout(new java.awt.GridLayout(3, 1, 25, 0));
 
-        panelLeaderboard.setBackground(java.awt.Color.red);
+        panelLeaderboard.setBackground(new java.awt.Color(102, 255, 204));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("Green Points");
@@ -476,7 +476,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(52, 52, 52)
                 .addComponent(jLabelGreenPoints)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanelCardFrame.add(panelLeaderboard);
@@ -510,12 +510,12 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(55, 55, 55)
                 .addComponent(jLabelCarbonSaving)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanelCardFrame.add(panelChartCarbon);
 
-        panelChartPembayaran.setBackground(java.awt.Color.blue);
+        panelChartPembayaran.setBackground(new java.awt.Color(204, 255, 102));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("Total Pembayaran");
@@ -539,7 +539,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
             .addGroup(panelChartPembayaranLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jLabelTotalPembayaran)
                 .addGap(22, 22, 22))
         );

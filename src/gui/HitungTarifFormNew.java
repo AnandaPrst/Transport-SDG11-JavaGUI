@@ -302,7 +302,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
         jPanel1.setPreferredSize(new java.awt.Dimension(645, 345));
         jPanel1.setLayout(new java.awt.GridLayout(1, 2, 20, 0));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(102, 204, 0));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Form Input");
@@ -398,7 +398,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
 
         jPanel1.add(jPanel2);
 
-        jPanel3.setBackground(java.awt.Color.red);
+        jPanel3.setBackground(new java.awt.Color(0, 102, 51));
 
         jLabelLiveCard.setBackground(new java.awt.Color(255, 255, 255));
         jLabelLiveCard.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
