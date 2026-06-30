@@ -38,22 +38,22 @@ public class DashboardFormNew extends javax.swing.JFrame {
         initComponents();
         this.penumpang = penumpang;
         setLocationRelativeTo(null);
-        tampilkanData();
+//        tampilkanData();
         tampilChartPembayaran();
         tampilChartCarbon();
         tampilLeaderboard();
     }
 
-    private void tampilkanData() {
-        JLabelUsername.setText("" + penumpang.getUsername());
-        jLabelGreenPoints.setText(penumpang.getGreenPoints() + " PTS");
-
-        double totalBayar = TransaksiManagerDB.totalBiaya(penumpang.getIdUser());
-        double totalEmisi = TransaksiManagerDB.totalEmisi(penumpang.getIdUser());
-
-        jLabelTotalPembayaran.setText("Rp " + String.format("%,.0f", totalBayar));
-        jLabelCarbonSaving.setText(String.format("%.2f", totalEmisi) + " kg CO₂");
-    }
+//    private void tampilkanData() {
+//        JLabelUsername.setText("" + penumpang.getUsername());
+//        jLabelGreenPoints.setText(penumpang.getGreenPoints() + " PTS");
+//
+//        double totalBayar = TransaksiManagerDB.totalBiaya(penumpang.getIdUser());
+//        double totalEmisi = TransaksiManagerDB.totalEmisi(penumpang.getIdUser());
+//
+//        jLabelTotalPembayaran.setText("Rp " + String.format("%,.0f", totalBayar));
+//        jLabelCarbonSaving.setText(String.format("%.2f", totalEmisi) + " kg CO₂");
+//    }
     
     private void tampilChartPembayaran() {
         DefaultCategoryDataset dataset
@@ -170,8 +170,6 @@ public class DashboardFormNew extends javax.swing.JFrame {
         plot.setOutlineVisible(false);
 
         chart.getLegend().setBorder(0, 0, 0, 0);
-
-//        chart.getLegend().setFrame(BlockBorder.NONE);
 
         panelChartCarbon.removeAll();
         panelChartCarbon.setLayout(new BorderLayout());

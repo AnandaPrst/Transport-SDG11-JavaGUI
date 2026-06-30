@@ -38,7 +38,7 @@ public class TransaksiManagerDB {
         }
     }
 
-    public static double totalBiaya(int idUser) {
+    public static double getTotalBiayaUser(int idUser) {
 
         String sql = "SELECT IFNULL(SUM(tarif),0) AS total FROM transaksi WHERE id_user=?";
 
@@ -60,7 +60,7 @@ public class TransaksiManagerDB {
         return 0;
     }
 
-    public static double totalEmisi(int idUser) {
+    public static double getTotalEmisiUser(int idUser) {
 
         String sql = "SELECT IFNULL(SUM(emisi_hemat),0) AS total FROM transaksi WHERE id_user=?";
 
