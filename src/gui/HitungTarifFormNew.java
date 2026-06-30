@@ -42,7 +42,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
         cmbKategori.addItem("Pelajar");
         cmbKategori.addItem("Lansia");
 
-        lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
+//        lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
     }
 
     private HitungTarifFormNew() {
@@ -587,7 +587,7 @@ isiDetailKendaraan(); // pertama kali dijalankan
             lblTarif.setText("Rp " + String.format("%.0f", tarif));
             lblEta.setText(String.format("%.2f jam", eta));
             lblEmisi.setText(String.format("%.2f kg CO2", emisiHemat));
-            lblPoints.setText(String.valueOf(penumpang.getGreenPoints()));
+            lblPoints.setText(String.valueOf(pointsBaru));
 
             // Bulatkan sebelum disimpan ke database
             tarif = Math.round(tarif * 100.0) / 100.0;

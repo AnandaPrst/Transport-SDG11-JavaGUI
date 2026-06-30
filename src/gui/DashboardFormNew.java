@@ -48,8 +48,8 @@ public class DashboardFormNew extends javax.swing.JFrame {
 //        JLabelUsername.setText("" + penumpang.getUsername());
 //        jLabelGreenPoints.setText(penumpang.getGreenPoints() + " PTS");
 //
-//        double totalBayar = TransaksiManagerDB.totalBiaya(penumpang.getIdUser());
-//        double totalEmisi = TransaksiManagerDB.totalEmisi(penumpang.getIdUser());
+//        double totalBayar = TransaksiManagerDB.getTotalBiaya(penumpang.getIdUser());
+//        double TotalEmisi = TransaksiManagerDB.getTotalEmisi(penumpang.getIdUser());
 //
 //        jLabelTotalPembayaran.setText("Rp " + String.format("%,.0f", totalBayar));
 //        jLabelCarbonSaving.setText(String.format("%.2f", totalEmisi) + " kg CO₂");
