@@ -388,7 +388,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(MenuDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuHitungTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 398, Short.MAX_VALUE)
                 .addComponent(btnLogout5)
                 .addContainerGap())
         );
@@ -476,7 +476,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(52, 52, 52)
                 .addComponent(jLabelGreenPoints)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         jPanelCardFrame.add(panelLeaderboard);
@@ -510,7 +510,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(55, 55, 55)
                 .addComponent(jLabelCarbonSaving)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jPanelCardFrame.add(panelChartCarbon);
@@ -539,7 +539,7 @@ public class DashboardFormNew extends javax.swing.JFrame {
             .addGroup(panelChartPembayaranLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addComponent(jLabelTotalPembayaran)
                 .addGap(22, 22, 22))
         );
